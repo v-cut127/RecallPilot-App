@@ -74,7 +74,7 @@ export function DropdownMenu({
                   role="menuitem"
                   onClick={() => setOpen(false)}
                   className={cn(
-                    "flex h-7 items-center gap-2 rounded-[5px] px-2 text-[12px] text-[#c2cde0] transition-colors hover:bg-white/[0.05] hover:text-ink",
+                    "flex h-7 items-center gap-2 rounded-[5px] px-2 text-[12px] text-[#c4c4ca] transition-colors hover:bg-white/[0.05] hover:text-ink",
                     item.danger && "text-[#f6a3a5] hover:text-[#f6a3a5]"
                   )}
                 >
@@ -92,7 +92,7 @@ export function DropdownMenu({
                     item.onSelect?.();
                   }}
                   className={cn(
-                    "flex h-7 w-full items-center gap-2 rounded-[5px] px-2 text-left text-[12px] text-[#c2cde0] transition-colors hover:bg-white/[0.05] hover:text-ink disabled:pointer-events-none disabled:opacity-40",
+                    "flex h-7 w-full items-center gap-2 rounded-[5px] px-2 text-left text-[12px] text-[#c4c4ca] transition-colors hover:bg-white/[0.05] hover:text-ink disabled:pointer-events-none disabled:opacity-40",
                     item.danger && "text-[#f6a3a5] hover:text-[#f6a3a5]"
                   )}
                 >
@@ -194,7 +194,7 @@ export function CopyButton({
         }
       }}
       className={cn(
-        "inline-flex h-7 items-center gap-1.5 rounded-[5px] border border-line bg-white/[0.02] px-2 text-[11px] font-medium text-[#c2cde0] transition-colors hover:bg-white/[0.05] hover:text-ink",
+        "inline-flex h-7 items-center gap-1.5 rounded-[5px] border border-line bg-white/[0.02] px-2 text-[11px] font-medium text-[#c4c4ca] transition-colors hover:bg-white/[0.05] hover:text-ink",
         iconOnly && "w-7 justify-center px-0",
         className
       )}
@@ -248,7 +248,7 @@ export function SearchField({
         value={value}
         onChange={(event) => setValue(event.target.value)}
         placeholder={placeholder}
-        className="h-8 w-full rounded-[6px] border border-line bg-surface-2 pl-8 pr-8 text-[12px] text-ink outline-none transition-colors placeholder:text-muted-foreground focus:border-[#2a4a78] focus:bg-surface-3"
+        className="h-8 w-full rounded-[6px] border border-line bg-surface-2 pl-8 pr-8 text-[12px] text-ink outline-none transition-colors placeholder:text-muted-foreground focus:border-[#006ec3]/60 focus:bg-surface-3"
       />
       {value ? (
         <button
@@ -327,7 +327,7 @@ export function FilterSelect({
               }}
               className={cn(
                 "flex h-7 w-full items-center justify-between gap-3 rounded-[5px] px-2 text-left text-[12px] transition-colors hover:bg-white/[0.05]",
-                option.value === value ? "text-ink" : "text-[#c2cde0]"
+                option.value === value ? "text-ink" : "text-[#c4c4ca]"
               )}
             >
               <span>{option.label}</span>

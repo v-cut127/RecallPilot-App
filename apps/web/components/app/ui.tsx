@@ -137,15 +137,15 @@ const RECALL_TONES: Record<string, { label: string; dot: string; text: string; b
   due_soon: { label: "Due soon", dot: "bg-[#53d2e5]", text: "text-[#a9e7f1]", bg: "bg-[#53d2e5]/10 border-[#53d2e5]/20" },
   overdue: { label: "Overdue", dot: "bg-[#e3b341]", text: "text-[#eccb76]", bg: "bg-[#e3b341]/10 border-[#e3b341]/20" },
   lapsed: { label: "Lapsed", dot: "bg-[#f2777a]", text: "text-[#f6a3a5]", bg: "bg-[#f2777a]/10 border-[#f2777a]/20" },
-  upcoming: { label: "Upcoming", dot: "bg-[#7d8ba6]", text: "text-[#a7b2c7]", bg: "bg-white/[0.04] border-line" },
+  upcoming: { label: "Upcoming", dot: "bg-[#7f7f88]", text: "text-[#ababb2]", bg: "bg-white/[0.04] border-line" },
   no_contact: { label: "No contact", dot: "bg-[#e3b341]", text: "text-[#eccb76]", bg: "bg-[#e3b341]/10 border-[#e3b341]/20" },
-  no_recall: { label: "No recall", dot: "bg-[#59657c]", text: "text-[#97a2b8]", bg: "bg-white/[0.04] border-line" },
+  no_recall: { label: "No recall", dot: "bg-[#717179]", text: "text-[#94949c]", bg: "bg-white/[0.04] border-line" },
 };
 
 const FALLBACK_RECALL_TONE = {
   label: "No recall",
-  dot: "bg-[#59657c]",
-  text: "text-[#97a2b8]",
+  dot: "bg-[#717179]",
+  text: "text-[#94949c]",
   bg: "bg-white/[0.04] border-line",
 };
 
@@ -168,16 +168,16 @@ export function RecallBadge({ status, className }: { status: string; className?:
 
 const STATUS_TONES: Record<string, string> = {
   active: "bg-[#4cc38a]/10 border-[#4cc38a]/20 text-[#83e0b3]",
-  scheduled: "bg-[#006ec3]/12 border-[#006ec3]/25 text-[#83bdf0]",
-  paused: "bg-white/[0.04] border-line text-[#a7b2c7]",
+  scheduled: "bg-[#006ec3]/12 border-[#006ec3]/25 text-[#53d2e5]",
+  paused: "bg-white/[0.04] border-line text-[#ababb2]",
   completed: "bg-[#4cc38a]/10 border-[#4cc38a]/20 text-[#83e0b3]",
   cancelled: "bg-[#f2777a]/10 border-[#f2777a]/20 text-[#f6a3a5]",
   no_show: "bg-[#e3b341]/10 border-[#e3b341]/20 text-[#eccb76]",
   booked: "bg-[#4cc38a]/10 border-[#4cc38a]/20 text-[#83e0b3]",
   replied: "bg-[#53d2e5]/10 border-[#53d2e5]/20 text-[#a9e7f1]",
   awaiting: "bg-[#e3b341]/10 border-[#e3b341]/20 text-[#eccb76]",
-  unread: "bg-[#006ec3]/12 border-[#006ec3]/25 text-[#83bdf0]",
-  draft: "bg-white/[0.04] border-line text-[#a7b2c7]",
+  unread: "bg-[#006ec3]/12 border-[#006ec3]/25 text-[#53d2e5]",
+  draft: "bg-white/[0.04] border-line text-[#ababb2]",
 };
 
 const STATUS_LABELS: Record<string, string> = {
@@ -199,7 +199,7 @@ export function StatusBadge({ status, label, className }: { status: string; labe
     <span
       className={cn(
         "inline-flex items-center gap-1.5 whitespace-nowrap rounded-[4px] border px-1.5 py-0.5 text-[11px] font-medium",
-        STATUS_TONES[status] ?? "bg-white/[0.04] border-line text-[#a7b2c7]",
+        STATUS_TONES[status] ?? "bg-white/[0.04] border-line text-[#ababb2]",
         className
       )}
     >
@@ -222,7 +222,7 @@ export function Avatar({
   return (
     <span
       className={cn(
-        "inline-flex shrink-0 items-center justify-center rounded-full border border-white/10 bg-[#101c36] font-medium text-[#c5d2e8]",
+        "inline-flex shrink-0 items-center justify-center rounded-full border border-white/10 bg-[#2a2a2f] font-medium text-[#c7c7cd]",
         dimension,
         className
       )}
@@ -318,7 +318,7 @@ export function Bar({ value, max, tone = "cyan" }: { value: number; max: number;
       <div
         className={cn(
           "h-full rounded-full",
-          tone === "cyan" ? "bg-[#53d2e5]" : tone === "blue" ? "bg-[#2f8fe0]" : "bg-[#4a5975]"
+          tone === "cyan" ? "bg-[#53d2e5]" : tone === "blue" ? "bg-[#006ec3]" : "bg-[#494950]"
         )}
         style={{ width: `${width}%` }}
       />

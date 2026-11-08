@@ -212,12 +212,12 @@ export function AssistantView({ context }: { context: AssistantContextData }) {
                   onClick={() => setPatientId(item.id === patientId ? null : item.id)}
                   className={cn(
                     "flex w-full items-center gap-2 rounded-[5px] px-1.5 py-1.5 text-left transition-colors",
-                    item.id === patientId ? "bg-[#0b1b34]" : "hover:bg-white/[0.035]"
+                    item.id === patientId ? "bg-[#232326]" : "hover:bg-white/[0.035]"
                   )}
                 >
                   <Avatar name={item.name} size="sm" />
                   <span className="min-w-0 flex-1">
-                    <span className={cn("block truncate text-[11px] font-medium", item.id === patientId ? "text-ink" : "text-[#c5d2e8]")}>{item.name}</span>
+                    <span className={cn("block truncate text-[11px] font-medium", item.id === patientId ? "text-ink" : "text-[#c7c7cd]")}>{item.name}</span>
                     <span className="block truncate text-[9px] text-muted-foreground">{item.treatmentLabel} · due {item.recallDue ?? "—"}</span>
                   </span>
                   <RecallBadge status={item.status} className="px-1 py-0 text-[8px]" />
@@ -239,7 +239,7 @@ export function AssistantView({ context }: { context: AssistantContextData }) {
                     className="flex w-full items-start gap-2 rounded-[5px] px-1.5 py-1.5 text-left transition-colors hover:bg-white/[0.035]"
                   >
                     <Icon className="mt-0.5 size-3.5 shrink-0 text-[#53d2e5]" />
-                    <span className="text-[11px] leading-snug text-[#c5d2e8]">{suggestion.title}</span>
+                    <span className="text-[11px] leading-snug text-[#c7c7cd]">{suggestion.title}</span>
                   </button>
                 );
               })}
@@ -288,7 +288,7 @@ export function AssistantView({ context }: { context: AssistantContextData }) {
                     <Sparkles className="size-3.5" />
                   </span>
                   <div className="min-w-0 max-w-[78%]">
-                    <div className="rounded-[7px] border border-line bg-surface-2 px-3 py-2.5 text-[12px] leading-relaxed text-[#dbe4f3] whitespace-pre-line">
+                    <div className="rounded-[7px] border border-line bg-surface-2 px-3 py-2.5 text-[12px] leading-relaxed text-[#dedee1] whitespace-pre-line">
                       {message.content}
                     </div>
                     {message.sources?.length ? (
@@ -306,7 +306,7 @@ export function AssistantView({ context }: { context: AssistantContextData }) {
                           <Link
                             key={action.label}
                             href={action.href}
-                            className="inline-flex h-6 items-center gap-1 rounded-[4px] border border-line px-1.5 text-[10px] font-medium text-[#c2cde0] transition-colors hover:bg-white/[0.05] hover:text-ink"
+                            className="inline-flex h-6 items-center gap-1 rounded-[4px] border border-line px-1.5 text-[10px] font-medium text-[#c4c4ca] transition-colors hover:bg-white/[0.05] hover:text-ink"
                           >
                             {action.label} <ArrowUpRight className="size-2.5" />
                           </Link>
@@ -317,7 +317,7 @@ export function AssistantView({ context }: { context: AssistantContextData }) {
                 </div>
               ) : (
                 <div key={message.id} className="flex justify-end">
-                  <div className="max-w-[74%] rounded-[7px] bg-[#0b3560] px-3 py-2.5 text-[12px] leading-relaxed text-[#e8f2ff]">{message.content}</div>
+                  <div className="max-w-[74%] rounded-[7px] bg-[#333338] px-3 py-2.5 text-[12px] leading-relaxed text-[#ececf0]">{message.content}</div>
                 </div>
               )
             )}
@@ -348,7 +348,7 @@ export function AssistantView({ context }: { context: AssistantContextData }) {
                 </button>
               ))}
             </div>
-            <div className="rounded-[6px] border border-line bg-surface-2 focus-within:border-[#2a4a78]">
+            <div className="rounded-[6px] border border-line bg-surface-2 focus-within:border-[#006ec3]/60">
               <textarea
                 value={input}
                 onChange={(event) => setInput(event.target.value)}

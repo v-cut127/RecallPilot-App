@@ -110,7 +110,7 @@ export function HelpView() {
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Search help articles…"
-                className="h-8 w-full rounded-[6px] border border-line bg-surface-2 pl-8 pr-2 text-[12px] text-ink outline-none placeholder:text-muted-foreground focus:border-[#2a4a78]"
+                className="h-8 w-full rounded-[6px] border border-line bg-surface-2 pl-8 pr-2 text-[12px] text-ink outline-none placeholder:text-muted-foreground focus:border-[#006ec3]/60"
               />
             </div>
             <div className="mt-2 flex items-center gap-1 overflow-x-auto app-scroll">
@@ -141,7 +141,7 @@ export function HelpView() {
                   >
                     <div className="min-w-0">
                       <p className="text-[11px] uppercase tracking-[0.08em] text-muted-foreground/60">{faq.category}</p>
-                      <p className="mt-0.5 text-[12px] font-medium text-[#dbe4f3]">{faq.question}</p>
+                      <p className="mt-0.5 text-[12px] font-medium text-[#dedee1]">{faq.question}</p>
                     </div>
                     <ChevronDown className={cn("size-3.5 shrink-0 text-muted-foreground transition-transform", isOpen && "rotate-180")} />
                   </button>
@@ -166,7 +166,7 @@ export function HelpView() {
               <div className="flex items-center justify-between gap-2 rounded-[6px] border border-line bg-white/[0.015] px-2.5 py-2">
                 <div className="flex items-center gap-2">
                   <Mail className="size-3.5 text-[#53d2e5]" />
-                  <span className="text-[11px] text-[#c5d2e8]">support@recallpilot.com</span>
+                  <span className="text-[11px] text-[#c7c7cd]">support@recallpilot.com</span>
                 </div>
                 <CopyButton value="support@recallpilot.com" iconOnly label="Copy support email" className="h-5 w-5" />
               </div>

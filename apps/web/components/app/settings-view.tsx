@@ -20,7 +20,7 @@ const TABS: Array<{ value: Tab; label: string; icon: React.ElementType }> = [
 ];
 
 const inputClass =
-  "h-8 w-full rounded-[6px] border border-line bg-surface-2 px-2.5 text-[12px] text-ink outline-none transition-colors placeholder:text-muted-foreground focus:border-[#2a4a78]";
+  "h-8 w-full rounded-[6px] border border-line bg-surface-2 px-2.5 text-[12px] text-ink outline-none transition-colors placeholder:text-muted-foreground focus:border-[#006ec3]/60";
 
 export function SettingsView({
   data,
@@ -51,10 +51,10 @@ export function SettingsView({
                 type="button"
                 onClick={() => setTab(item.value)}
                 className={`flex h-7 items-center gap-2 rounded-[5px] px-2 text-left text-[12px] font-medium transition-colors ${
-                  active ? "bg-[#0c1a33] text-ink" : "text-[#93a0b8] hover:bg-white/[0.035] hover:text-[#dbe4f3]"
+                  active ? "bg-[#006ec3]/[0.16] text-ink" : "text-[#94949c] hover:bg-white/[0.035] hover:text-[#dedee1]"
                 }`}
               >
-                <Icon className={`size-3.5 ${active ? "text-[#7fd8e7]" : "text-[#7e8ca6]"}`} />
+                <Icon className={`size-3.5 ${active ? "text-[#7fd8e7]" : "text-[#808089]"}`} />
                 {item.label}
               </button>
             );
@@ -64,7 +64,7 @@ export function SettingsView({
           <p className="text-[9px] leading-relaxed text-muted-foreground/60">
             Signed in as
             <br />
-            <span className="text-[#a9b6cc]">{user.email}</span>
+            <span className="text-[#ababb2]">{user.email}</span>
           </p>
         </div>
       </Panel>
@@ -91,23 +91,23 @@ export function SettingsView({
             >
               <div className="grid gap-3.5 sm:grid-cols-2">
                 <label className="block sm:col-span-2">
-                  <span className="mb-1.5 block text-[11px] font-medium text-[#a9b6cc]">Practice name</span>
+                  <span className="mb-1.5 block text-[11px] font-medium text-[#ababb2]">Practice name</span>
                   <input name="name" defaultValue={data.organization.name} required maxLength={160} className={inputClass} />
                 </label>
                 <label className="block">
-                  <span className="mb-1.5 block text-[11px] font-medium text-[#a9b6cc]">Workspace slug</span>
+                  <span className="mb-1.5 block text-[11px] font-medium text-[#ababb2]">Workspace slug</span>
                   <input value={data.organization.slug} readOnly className={`${inputClass} cursor-not-allowed opacity-60`} />
                 </label>
                 <label className="block">
-                  <span className="mb-1.5 block text-[11px] font-medium text-[#a9b6cc]">Country</span>
+                  <span className="mb-1.5 block text-[11px] font-medium text-[#ababb2]">Country</span>
                   <input value={data.organization.country} readOnly className={`${inputClass} cursor-not-allowed opacity-60`} />
                 </label>
                 <label className="block">
-                  <span className="mb-1.5 block text-[11px] font-medium text-[#a9b6cc]">Timezone</span>
+                  <span className="mb-1.5 block text-[11px] font-medium text-[#ababb2]">Timezone</span>
                   <input name="timezone" defaultValue={data.organization.timezone} required className={inputClass} />
                 </label>
                 <label className="block">
-                  <span className="mb-1.5 block text-[11px] font-medium text-[#a9b6cc]">Locale</span>
+                  <span className="mb-1.5 block text-[11px] font-medium text-[#ababb2]">Locale</span>
                   <select name="locale" defaultValue={data.organization.locale} className={inputClass}>
                     <option value="en">English</option>
                     <option value="de">Deutsch</option>
@@ -139,7 +139,7 @@ export function SettingsView({
                 {data.locations.map((location) => (
                   <div key={location.id} className="flex items-center justify-between py-2">
                     <div>
-                      <p className="text-[12px] font-medium text-[#dbe4f3]">{location.name}</p>
+                      <p className="text-[12px] font-medium text-[#dedee1]">{location.name}</p>
                       <p className="text-[10px] text-muted-foreground">
                         {location.city ?? "No city"} · {location.timezone}
                       </p>
@@ -163,7 +163,7 @@ export function SettingsView({
                 <form key={rule.id} action={updateRecallRuleAction} className="flex flex-wrap items-center gap-3 px-4 py-3">
                   <input type="hidden" name="ruleId" value={rule.id} />
                   <div className="min-w-0 flex-1">
-                    <p className="text-[12px] font-medium text-[#dbe4f3]">{rule.name}</p>
+                    <p className="text-[12px] font-medium text-[#dedee1]">{rule.name}</p>
                     <p className="mt-0.5 text-[10px] text-muted-foreground capitalize">{rule.treatment} recall</p>
                   </div>
                   <label className="flex items-center gap-1.5 text-[10px] text-muted-foreground">
@@ -182,7 +182,7 @@ export function SettingsView({
                   </label>
                   <button
                     type="submit"
-                    className="inline-flex h-6 items-center rounded-[4px] border border-line px-2 text-[10px] font-medium text-[#c2cde0] transition-colors hover:bg-white/[0.05] hover:text-ink"
+                    className="inline-flex h-6 items-center rounded-[4px] border border-line px-2 text-[10px] font-medium text-[#c4c4ca] transition-colors hover:bg-white/[0.05] hover:text-ink"
                   >
                     Save
                   </button>
@@ -241,7 +241,7 @@ export function SettingsView({
                   <div className="flex min-w-0 items-center gap-2.5">
                     <Avatar name={member.name} />
                     <div className="min-w-0">
-                      <p className="truncate text-[12px] font-medium text-[#dbe4f3]">{member.name}</p>
+                      <p className="truncate text-[12px] font-medium text-[#dedee1]">{member.name}</p>
                       <p className="truncate text-[10px] text-muted-foreground">{member.email}</p>
                     </div>
                   </div>
@@ -281,19 +281,19 @@ export function SettingsView({
               <div className="mt-2 space-y-2 text-[11px]">
                 <div className="flex items-center justify-between gap-3 border-b border-line/60 pb-2">
                   <span className="text-muted-foreground">Raw lead uploads</span>
-                  <span className="text-[#c5d2e8]">{retention.leadHours} hours</span>
+                  <span className="text-[#c7c7cd]">{retention.leadHours} hours</span>
                 </div>
                 <div className="flex items-center justify-between gap-3 border-b border-line/60 pb-2">
                   <span className="text-muted-foreground">Workspace raw imports</span>
-                  <span className="text-[#c5d2e8]">{retention.orgHours} hours</span>
+                  <span className="text-[#c7c7cd]">{retention.orgHours} hours</span>
                 </div>
                 <div className="flex items-center justify-between gap-3 border-b border-line/60 pb-2">
                   <span className="text-muted-foreground">Import row previews</span>
-                  <span className="text-[#c5d2e8]">{retention.rowHours} hours</span>
+                  <span className="text-[#c7c7cd]">{retention.rowHours} hours</span>
                 </div>
                 <div className="flex items-center justify-between gap-3">
                   <span className="text-muted-foreground">Shared audit links</span>
-                  <span className="text-[#c5d2e8]">{retention.linkDays} days</span>
+                  <span className="text-[#c7c7cd]">{retention.linkDays} days</span>
                 </div>
               </div>
             </div>

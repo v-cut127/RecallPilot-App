@@ -62,19 +62,19 @@ export function AppointmentsTable({ rows, tab }: { rows: AppointmentTableRow[]; 
             return (
               <tr key={row.id} className="group border-b border-line/60 transition-colors last:border-0 hover:bg-white/[0.018]">
                 <td className="whitespace-nowrap py-2.5 pl-4 pr-2">
-                  <p className="text-[12px] text-[#c5d2e8]">{formatDate(row.startsAt, "d MMM yyyy")}</p>
+                  <p className="text-[12px] text-[#c7c7cd]">{formatDate(row.startsAt, "d MMM yyyy")}</p>
                   <p className="text-[10px] text-muted-foreground">{formatDate(row.startsAt, "HH:mm")}</p>
                 </td>
                 <td className="px-2 py-2.5">
                   <Link href={`/app/patients/${row.patientId}`} className="flex min-w-0 items-center gap-2">
                     <Avatar name={row.patientName} size="sm" />
-                    <span className="truncate text-[12px] font-medium text-[#dbe4f3] group-hover:text-ink">{row.patientName}</span>
+                    <span className="truncate text-[12px] font-medium text-[#dedee1] group-hover:text-ink">{row.patientName}</span>
                   </Link>
                 </td>
                 <td className="truncate px-2 py-2.5 text-[12px] text-muted-foreground">{row.treatmentLabel}</td>
                 <td className="truncate px-2 py-2.5 text-[12px] text-muted-foreground">{row.providerName ?? "Unassigned"}</td>
                 <td className="truncate px-2 py-2.5 text-[12px] text-muted-foreground">{row.locationName ?? "—"}</td>
-                <td className="tabular px-2 py-2.5 text-[12px] text-[#c5d2e8]">{row.productionValue ? formatCurrency(row.productionValue) : "—"}</td>
+                <td className="tabular px-2 py-2.5 text-[12px] text-[#c7c7cd]">{row.productionValue ? formatCurrency(row.productionValue) : "—"}</td>
                 <td className="px-2 py-2.5">
                   <StatusBadge status={row.source === "planned" ? "scheduled" : row.status} label={statusLabel} />
                 </td>

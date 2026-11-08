@@ -130,14 +130,14 @@ export default async function AppointmentsPage({
 
         <div className="flex flex-wrap items-center justify-between gap-2 border-t border-line px-3 py-2.5">
           <p className="text-[11px] text-muted-foreground">
-            Showing <span className="tabular text-[#c5d2e8]">{start}–{end}</span> of{" "}
-            <span className="tabular text-[#c5d2e8]">{formatNumber(data.total)}</span>
+            Showing <span className="tabular text-[#c7c7cd]">{start}–{end}</span> of{" "}
+            <span className="tabular text-[#c7c7cd]">{formatNumber(data.total)}</span>
           </p>
           <div className="flex items-center gap-1">
             <Link
               href={pageHref(data.page - 1)}
               className={`inline-flex h-6 items-center rounded-[4px] border border-line px-2 text-[11px] font-medium ${
-                data.page <= 1 ? "pointer-events-none opacity-40" : "text-[#c2cde0] hover:bg-white/[0.05] hover:text-ink"
+                data.page <= 1 ? "pointer-events-none opacity-40" : "text-[#c4c4ca] hover:bg-white/[0.05] hover:text-ink"
               }`}
             >
               Previous
@@ -146,7 +146,7 @@ export default async function AppointmentsPage({
             <Link
               href={pageHref(data.page + 1)}
               className={`inline-flex h-6 items-center rounded-[4px] border border-line px-2 text-[11px] font-medium ${
-                data.page >= pageCount ? "pointer-events-none opacity-40" : "text-[#c2cde0] hover:bg-white/[0.05] hover:text-ink"
+                data.page >= pageCount ? "pointer-events-none opacity-40" : "text-[#c4c4ca] hover:bg-white/[0.05] hover:text-ink"
               }`}
             >
               Next

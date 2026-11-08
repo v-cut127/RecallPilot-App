@@ -66,7 +66,7 @@ export function CampaignsTable({ rows }: { rows: CampaignRow[] }) {
                     {row.name.slice(0, 2).toUpperCase()}
                   </span>
                   <span className="min-w-0">
-                    <span className="block truncate text-[12px] font-medium text-[#dbe4f3] group-hover:text-ink">{row.name}</span>
+                    <span className="block truncate text-[12px] font-medium text-[#dedee1] group-hover:text-ink">{row.name}</span>
                     <span className="block truncate text-[10px] text-muted-foreground">
                       {row.treatmentLabel} · every {row.intervalMonths} months
                     </span>
@@ -76,17 +76,17 @@ export function CampaignsTable({ rows }: { rows: CampaignRow[] }) {
               <td className="px-2 py-2.5">
                 <StatusBadge status={row.status} />
               </td>
-              <td className="tabular px-2 py-2.5 text-[12px] text-[#c5d2e8]">{row.targetCount.toLocaleString("en-US")}</td>
+              <td className="tabular px-2 py-2.5 text-[12px] text-[#c7c7cd]">{row.targetCount.toLocaleString("en-US")}</td>
               <td className="tabular px-2 py-2.5 text-[12px] text-muted-foreground">{row.contacted.toLocaleString("en-US")}</td>
               <td className="px-2 py-2.5">
                 <div className="flex items-center gap-2">
-                  <span className="tabular text-[12px] text-[#c5d2e8]">{formatPercent(row.responseRate)}</span>
+                  <span className="tabular text-[12px] text-[#c7c7cd]">{formatPercent(row.responseRate)}</span>
                   <span className="h-1 w-10 overflow-hidden rounded-full bg-white/[0.06]">
                     <span className="block h-full rounded-full bg-[#53d2e5]" style={{ width: `${Math.min(100, row.responseRate)}%` }} />
                   </span>
                 </div>
               </td>
-              <td className="tabular px-2 py-2.5 text-[12px] text-[#c5d2e8]">{row.bookings.toLocaleString("en-US")}</td>
+              <td className="tabular px-2 py-2.5 text-[12px] text-[#c7c7cd]">{row.bookings.toLocaleString("en-US")}</td>
               <td className="tabular px-2 py-2.5 text-[12px] text-[#83e0b3]">{formatCurrency(row.recovered)}</td>
               <td className="py-2.5 pl-2 pr-3 text-right">
                 <DropdownMenu

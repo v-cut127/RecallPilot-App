@@ -20,7 +20,7 @@ function SubmitButton() {
 }
 
 const inputClass =
-  "h-8 w-full rounded-[6px] border border-line bg-surface-2 px-2.5 text-[12px] text-ink outline-none transition-colors placeholder:text-muted-foreground focus:border-[#2a4a78]";
+  "h-8 w-full rounded-[6px] border border-line bg-surface-2 px-2.5 text-[12px] text-ink outline-none transition-colors placeholder:text-muted-foreground focus:border-[#006ec3]/60";
 
 export function NewCampaignButton({
   variant = "primary",
@@ -38,7 +38,7 @@ export function NewCampaignButton({
         className={
           variant === "primary"
             ? "inline-flex h-8 items-center gap-1.5 rounded-[6px] bg-[#006ec3] px-2.5 text-[12px] font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] transition-colors hover:bg-[#0a7bd4]"
-            : "inline-flex h-8 items-center gap-1.5 rounded-[6px] border border-line bg-white/[0.02] px-2.5 text-[12px] font-medium text-[#c2cde0] transition-colors hover:bg-white/[0.05] hover:text-ink"
+            : "inline-flex h-8 items-center gap-1.5 rounded-[6px] border border-line bg-white/[0.02] px-2.5 text-[12px] font-medium text-[#c4c4ca] transition-colors hover:bg-white/[0.05] hover:text-ink"
         }
       >
         <Plus className="size-3.5" />
@@ -54,7 +54,7 @@ export function NewCampaignButton({
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="inline-flex h-7 items-center rounded-[5px] border border-line px-2.5 text-[12px] font-medium text-[#c2cde0] transition-colors hover:bg-white/[0.05] hover:text-ink"
+              className="inline-flex h-7 items-center rounded-[5px] border border-line px-2.5 text-[12px] font-medium text-[#c4c4ca] transition-colors hover:bg-white/[0.05] hover:text-ink"
             >
               Cancel
             </button>
@@ -64,12 +64,12 @@ export function NewCampaignButton({
       >
         <form id="new-campaign-form" action={createCampaignAction} className="space-y-3.5">
           <label className="block">
-            <span className="mb-1.5 block text-[11px] font-medium text-[#a9b6cc]">Campaign name</span>
+            <span className="mb-1.5 block text-[11px] font-medium text-[#ababb2]">Campaign name</span>
             <input name="name" required minLength={2} maxLength={120} placeholder="Spring hygiene recall" className={inputClass} />
           </label>
           <div className="grid gap-3.5 sm:grid-cols-2">
             <label className="block">
-              <span className="mb-1.5 block text-[11px] font-medium text-[#a9b6cc]">Audience</span>
+              <span className="mb-1.5 block text-[11px] font-medium text-[#ababb2]">Audience</span>
               <select name="treatment" defaultValue="hygiene" className={inputClass}>
                 <option value="hygiene">Hygiene patients</option>
                 <option value="checkup">Check-up patients</option>
@@ -78,7 +78,7 @@ export function NewCampaignButton({
               </select>
             </label>
             <label className="block">
-              <span className="mb-1.5 block text-[11px] font-medium text-[#a9b6cc]">Recall interval</span>
+              <span className="mb-1.5 block text-[11px] font-medium text-[#ababb2]">Recall interval</span>
               <select name="intervalMonths" defaultValue="6" className={inputClass}>
                 <option value="3">Every 3 months</option>
                 <option value="6">Every 6 months</option>

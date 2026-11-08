@@ -37,7 +37,7 @@ export default async function CampaignDetailPage({ params }: { params: Promise<{
               <input type="hidden" name="active" value={String(!campaign.active)} />
               <button
                 type="submit"
-                className="inline-flex h-8 items-center gap-1.5 rounded-[6px] border border-line bg-white/[0.02] px-2.5 text-[12px] font-medium text-[#c2cde0] transition-colors hover:bg-white/[0.05] hover:text-ink"
+                className="inline-flex h-8 items-center gap-1.5 rounded-[6px] border border-line bg-white/[0.02] px-2.5 text-[12px] font-medium text-[#c4c4ca] transition-colors hover:bg-white/[0.05] hover:text-ink"
               >
                 {campaign.active ? <Pause className="size-3.5" /> : <Play className="size-3.5" />}
                 {campaign.active ? "Pause campaign" : "Activate campaign"}
@@ -88,7 +88,7 @@ export default async function CampaignDetailPage({ params }: { params: Promise<{
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-[12px] font-medium text-[#dbe4f3]">{step.title}</span>
+                      <span className="text-[12px] font-medium text-[#dedee1]">{step.title}</span>
                       <span className="text-[10px] text-muted-foreground">{step.day}</span>
                       <span className="inline-flex items-center gap-1 rounded-[4px] border border-line px-1 py-0.5 text-[9px] uppercase tracking-[0.06em] text-muted-foreground">
                         {step.channel === "SMS" ? <MessageSquare className="size-2.5" /> : <Mail className="size-2.5" />}
@@ -108,7 +108,7 @@ export default async function CampaignDetailPage({ params }: { params: Promise<{
               description="Outbound messages and responses over the last eight weeks."
               actions={
                 <div className="flex items-center gap-3 text-[10px] text-muted-foreground">
-                  <span className="flex items-center gap-1.5"><span className="size-1.5 rounded-full bg-[#2f8fe0]" /> Sent</span>
+                  <span className="flex items-center gap-1.5"><span className="size-1.5 rounded-full bg-[#006ec3]" /> Sent</span>
                   <span className="flex items-center gap-1.5"><span className="size-1.5 rounded-full bg-[#53d2e5]" /> Responses</span>
                 </div>
               }
@@ -118,7 +118,7 @@ export default async function CampaignDetailPage({ params }: { params: Promise<{
                 {campaign.weekly.map((week) => (
                   <div key={week.label} className="group flex min-w-0 flex-1 flex-col items-center justify-end gap-1" title={`${week.sent} sent · ${week.responses} responses`}>
                     <div className="flex w-full items-end justify-center gap-0.5">
-                      <div className="w-[38%] rounded-t-[2px] bg-[#2f8fe0]/70 transition-colors group-hover:bg-[#2f8fe0]" style={{ height: `${Math.max(4, (week.sent / maxWeekly) * 118)}px` }} />
+                      <div className="w-[38%] rounded-t-[2px] bg-[#006ec3]/70 transition-colors group-hover:bg-[#006ec3]" style={{ height: `${Math.max(4, (week.sent / maxWeekly) * 118)}px` }} />
                       <div className="w-[26%] rounded-t-[2px] bg-[#53d2e5]/70 transition-colors group-hover:bg-[#53d2e5]" style={{ height: `${Math.max(2, (week.responses / maxWeekly) * 118)}px` }} />
                     </div>
                     <span className="text-[9px] text-muted-foreground/60">{week.label}</span>
@@ -151,12 +151,12 @@ export default async function CampaignDetailPage({ params }: { params: Promise<{
                       <td className="py-2.5 pl-4 pr-2">
                         <Link href={`/app/patients/${patient.id}`} className="flex items-center gap-2">
                           <Avatar name={patient.name} size="sm" />
-                          <span className="truncate text-[12px] font-medium text-[#dbe4f3]">{patient.name}</span>
+                          <span className="truncate text-[12px] font-medium text-[#dedee1]">{patient.name}</span>
                         </Link>
                       </td>
                       <td className="px-2 py-2.5 text-[12px] text-muted-foreground">{relativeDay(patient.recallDue)}</td>
                       <td className="px-2 py-2.5"><RecallBadge status={patient.recallStatus} /></td>
-                      <td className="tabular px-2 py-2.5 text-[12px] text-[#c5d2e8]">{formatCurrency(patient.estimatedValue)}</td>
+                      <td className="tabular px-2 py-2.5 text-[12px] text-[#c7c7cd]">{formatCurrency(patient.estimatedValue)}</td>
                       <td className="py-2.5 pl-2 pr-4 text-right">
                         <Link href={`/app/patients/${patient.id}`} className="inline-flex size-6 items-center justify-center rounded-[4px] text-muted-foreground hover:bg-white/[0.05] hover:text-ink">
                           <ArrowRight className="size-3" />
@@ -181,7 +181,7 @@ export default async function CampaignDetailPage({ params }: { params: Promise<{
                   <div key={location.name}>
                     <div className="mb-1 flex items-center justify-between text-[11px]">
                       <span className="truncate text-muted-foreground">{location.name}</span>
-                      <span className="tabular text-[#c5d2e8]">{location.count}</span>
+                      <span className="tabular text-[#c7c7cd]">{location.count}</span>
                     </div>
                     <Bar value={location.count} max={maxLocation} tone="blue" />
                   </div>
@@ -199,7 +199,7 @@ export default async function CampaignDetailPage({ params }: { params: Promise<{
                     {message.channel === "SMS" ? <MessageSquare className="size-3.5" /> : <Mail className="size-3.5" />}
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-[12px] font-medium text-[#dbe4f3]">{message.patientName}</p>
+                    <p className="truncate text-[12px] font-medium text-[#dedee1]">{message.patientName}</p>
                     <p className="mt-0.5 text-[10px] text-muted-foreground">{message.template} · {message.channel}</p>
                   </div>
                   <span className="shrink-0 text-[10px] text-muted-foreground">{formatDate(message.sendAt, "d MMM")}</span>
@@ -213,19 +213,19 @@ export default async function CampaignDetailPage({ params }: { params: Promise<{
             <div className="space-y-2.5 px-4 py-3">
               <div className="flex items-center justify-between text-[11px]">
                 <span className="text-muted-foreground">Audience rule</span>
-                <span className="text-right text-[#c5d2e8]">{campaign.treatmentLabel} · {campaign.intervalMonths} mo</span>
+                <span className="text-right text-[#c7c7cd]">{campaign.treatmentLabel} · {campaign.intervalMonths} mo</span>
               </div>
               <div className="flex items-center justify-between text-[11px]">
                 <span className="text-muted-foreground">Created</span>
-                <span className="text-[#c5d2e8]">{formatDate(campaign.createdAt, "d MMM yyyy")}</span>
+                <span className="text-[#c7c7cd]">{formatDate(campaign.createdAt, "d MMM yyyy")}</span>
               </div>
               <div className="flex items-center justify-between text-[11px]">
                 <span className="text-muted-foreground">Next send</span>
-                <span className="text-[#c5d2e8]">{campaign.scheduled[0] ? formatDate(campaign.scheduled[0].sendAt, "d MMM") : "—"}</span>
+                <span className="text-[#c7c7cd]">{campaign.scheduled[0] ? formatDate(campaign.scheduled[0].sendAt, "d MMM") : "—"}</span>
               </div>
               <div className="flex items-center justify-between text-[11px]">
                 <span className="text-muted-foreground">Sequence</span>
-                <span className="text-[#c5d2e8]">3 touches</span>
+                <span className="text-[#c7c7cd]">3 touches</span>
               </div>
             </div>
           </Panel>
@@ -236,7 +236,7 @@ export default async function CampaignDetailPage({ params }: { params: Promise<{
               {campaign.activity.map((item) => (
                 <div key={item.id} className="px-4 py-2.5">
                   <div className="flex items-center justify-between gap-2">
-                    <p className="truncate text-[11px] font-medium text-[#dbe4f3]">{item.title}</p>
+                    <p className="truncate text-[11px] font-medium text-[#dedee1]">{item.title}</p>
                     <span className="shrink-0 text-[9px] text-muted-foreground/70">{timeAgo(item.occurredAt)}</span>
                   </div>
                   <p className="mt-0.5 truncate text-[10px] text-muted-foreground">{item.subject} · {item.detail}</p>

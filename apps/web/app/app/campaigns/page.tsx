@@ -113,17 +113,17 @@ export default async function CampaignsPage({
           <div className="grid grid-cols-3 divide-x divide-line">
             <div className="px-4 py-3">
               <p className="text-[10px] uppercase tracking-[0.08em] text-muted-foreground/70">Sequence</p>
-              <p className="mt-1 text-[12px] text-[#c5d2e8]">3 touches</p>
+              <p className="mt-1 text-[12px] text-[#c7c7cd]">3 touches</p>
               <p className="text-[10px] text-muted-foreground">Day 0 · 7 · 21</p>
             </div>
             <div className="px-4 py-3">
               <p className="text-[10px] uppercase tracking-[0.08em] text-muted-foreground/70">Best channel</p>
-              <p className="mt-1 text-[12px] text-[#c5d2e8]">SMS first</p>
+              <p className="mt-1 text-[12px] text-[#c7c7cd]">SMS first</p>
               <p className="text-[10px] text-muted-foreground">Email fallback</p>
             </div>
             <div className="px-4 py-3">
               <p className="text-[10px] uppercase tracking-[0.08em] text-muted-foreground/70">Quiet hours</p>
-              <p className="mt-1 text-[12px] text-[#c5d2e8]">08:00–19:00</p>
+              <p className="mt-1 text-[12px] text-[#c7c7cd]">08:00–19:00</p>
               <p className="text-[10px] text-muted-foreground">Local time</p>
             </div>
           </div>

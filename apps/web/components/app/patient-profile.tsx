@@ -38,7 +38,7 @@ function DetailRow({ label, children }: { label: string; children: React.ReactNo
   return (
     <div className="flex items-start justify-between gap-4 border-b border-line/60 py-2 last:border-0">
       <span className="shrink-0 text-[11px] text-muted-foreground">{label}</span>
-      <span className="min-w-0 text-right text-[12px] text-[#c5d2e8]">{children}</span>
+      <span className="min-w-0 text-right text-[12px] text-[#c7c7cd]">{children}</span>
     </div>
   );
 }
@@ -94,9 +94,9 @@ export function PatientProfileView({ profile }: { profile: PatientProfile }) {
             </div>
             <p className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[12px] text-muted-foreground">
               <span>{patient.treatmentLabel} recall</span>
-              <span className="text-[#3f4c61]">·</span>
+              <span className="text-[#454549]">·</span>
               <span>{patient.locationName ?? "Unassigned location"}</span>
-              <span className="text-[#3f4c61]">·</span>
+              <span className="text-[#454549]">·</span>
               <span>{patient.providerName ?? "No provider"}</span>
             </p>
           </div>
@@ -110,7 +110,7 @@ export function PatientProfileView({ profile }: { profile: PatientProfile }) {
           </Link>
           <Link
             href={`/app/appointments?patient=${patient.id}`}
-            className="inline-flex h-8 items-center gap-1.5 rounded-[6px] border border-line bg-white/[0.02] px-2.5 text-[12px] font-medium text-[#c2cde0] transition-colors hover:bg-white/[0.05] hover:text-ink"
+            className="inline-flex h-8 items-center gap-1.5 rounded-[6px] border border-line bg-white/[0.02] px-2.5 text-[12px] font-medium text-[#c4c4ca] transition-colors hover:bg-white/[0.05] hover:text-ink"
           >
             <CalendarPlus className="size-3.5" /> Schedule
           </Link>
@@ -173,7 +173,7 @@ export function PatientProfileView({ profile }: { profile: PatientProfile }) {
               <DetailRow label="Locale">{patient.locale.toUpperCase()}</DetailRow>
               <DetailRow label="Last visit">{relativeDay(patient.lastVisitAt)}</DetailRow>
               <DetailRow label="Next recall">
-                <span className="text-[#c5d2e8]">{relativeDay(patient.recallDue)}</span>
+                <span className="text-[#c7c7cd]">{relativeDay(patient.recallDue)}</span>
               </DetailRow>
               <DetailRow label="Est. treatment value">
                 <span className="tabular font-medium text-ink">{formatCurrency(profile.outstanding || patient.estimatedValue)}</span>
@@ -205,7 +205,7 @@ export function PatientProfileView({ profile }: { profile: PatientProfile }) {
                 <Sparkles className="size-3.5 text-[#53d2e5]" />
                 <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#7fd8e7]">AI suggestions</p>
               </div>
-              <p className="mt-1 text-[12px] font-medium text-[#dbe4f3]">Next best action</p>
+              <p className="mt-1 text-[12px] font-medium text-[#dedee1]">Next best action</p>
               <p className="mt-0.5 text-[11px] leading-relaxed text-muted-foreground">
                 {!bestChannel
                   ? "This patient has no channel consent on file. Add consent before starting outreach."
@@ -228,7 +228,7 @@ export function PatientProfileView({ profile }: { profile: PatientProfile }) {
                     </span>
                     <CopyButton value={suggestion.body} iconOnly label={`Copy ${suggestion.channel} draft`} className="h-5 w-5" />
                   </div>
-                  <p className="mt-1.5 text-[11px] font-medium text-[#dbe4f3]">{suggestion.subject}</p>
+                  <p className="mt-1.5 text-[11px] font-medium text-[#dedee1]">{suggestion.subject}</p>
                   <p className="mt-1 line-clamp-3 whitespace-pre-line text-[11px] leading-relaxed text-muted-foreground">{suggestion.body}</p>
                   <button
                     type="button"
@@ -329,8 +329,8 @@ export function PatientProfileView({ profile }: { profile: PatientProfile }) {
                 <div
                   className={`max-w-[82%] rounded-[6px] px-2.5 py-1.5 text-[11px] leading-relaxed ${
                     message.direction === "outbound"
-                      ? "bg-[#0b3560] text-[#e8f2ff]"
-                      : "border border-line bg-surface-2 text-[#c5d2e8]"
+                      ? "bg-[#333338] text-[#ececf0]"
+                      : "border border-line bg-surface-2 text-[#c7c7cd]"
                   }`}
                 >
                   {message.body}
@@ -362,7 +362,7 @@ export function PatientProfileView({ profile }: { profile: PatientProfile }) {
           </div>
           <Link
             href={`/app/appointments?patient=${current.patient.id}`}
-            className="inline-flex h-7 items-center gap-1 rounded-[5px] border border-line px-2 text-[11px] font-medium text-[#c2cde0] hover:bg-white/[0.05] hover:text-ink"
+            className="inline-flex h-7 items-center gap-1 rounded-[5px] border border-line px-2 text-[11px] font-medium text-[#c4c4ca] hover:bg-white/[0.05] hover:text-ink"
           >
             <CalendarPlus className="size-3" /> Schedule
           </Link>
@@ -423,7 +423,7 @@ export function PatientProfileView({ profile }: { profile: PatientProfile }) {
             {recallRows.map((row) => (
               <div key={row.id} className="flex items-center justify-between gap-3 py-2.5">
                 <div className="min-w-0">
-                  <p className="text-[12px] font-medium text-[#dbe4f3]">{row.label}</p>
+                  <p className="text-[12px] font-medium text-[#dedee1]">{row.label}</p>
                   <p className="mt-0.5 truncate text-[11px] text-muted-foreground">{row.detail}</p>
                 </div>
                 <div className="flex shrink-0 items-center gap-2">
@@ -437,10 +437,10 @@ export function PatientProfileView({ profile }: { profile: PatientProfile }) {
         <div className="rounded-[6px] border border-line bg-white/[0.015] p-3">
           <div className="flex items-center gap-1.5">
             <Clock className="size-3.5 text-muted-foreground" />
-            <p className="text-[11px] font-medium text-[#dbe4f3]">Recall aging</p>
+            <p className="text-[11px] font-medium text-[#dedee1]">Recall aging</p>
           </div>
           <p className="mt-1 text-[11px] text-muted-foreground">
-            The patient is currently <span className="text-[#c5d2e8]">{current.patient.recallStatus.replace("_", " ")}</span>. Recall reminders
+            The patient is currently <span className="text-[#c7c7cd]">{current.patient.recallStatus.replace("_", " ")}</span>. Recall reminders
             are sequenced at day 0, 7 and 21.
           </p>
           <div className="mt-2">
@@ -492,8 +492,8 @@ export function PatientProfileView({ profile }: { profile: PatientProfile }) {
                 <div
                   className={`rounded-[7px] px-2.5 py-2 text-[12px] leading-relaxed ${
                     message.direction === "outbound"
-                      ? "bg-[#0b3560] text-[#e8f2ff]"
-                      : "border border-line bg-surface-2 text-[#c5d2e8]"
+                      ? "bg-[#333338] text-[#ececf0]"
+                      : "border border-line bg-surface-2 text-[#c7c7cd]"
                   }`}
                 >
                   {message.body}
@@ -507,7 +507,7 @@ export function PatientProfileView({ profile }: { profile: PatientProfile }) {
           {sent ? (
             <div className="flex justify-end">
               <div className="max-w-[80%]">
-                <div className="rounded-[7px] bg-[#0b3560] px-2.5 py-2 text-[12px] leading-relaxed text-[#e8f2ff]">{draft || "Message sent."}</div>
+                <div className="rounded-[7px] bg-[#333338] px-2.5 py-2 text-[12px] leading-relaxed text-[#ececf0]">{draft || "Message sent."}</div>
                 <p className="mt-1 flex items-center justify-end gap-1 text-[9px] text-[#83e0b3]">
                   <Check className="size-2.5" /> Delivered
                 </p>
@@ -600,7 +600,7 @@ export function PatientProfileView({ profile }: { profile: PatientProfile }) {
         <div className="rounded-[6px] border border-line bg-white/[0.015] p-3">
           <div className="flex items-center gap-1.5">
             <Stethoscope className="size-3.5 text-muted-foreground" />
-            <p className="text-[11px] font-medium text-[#dbe4f3]">What the AI sees</p>
+            <p className="text-[11px] font-medium text-[#dedee1]">What the AI sees</p>
           </div>
           <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">
             {current.patient.name} last visited {relativeDay(current.patient.lastVisitAt)} for {current.patient.treatmentLabel.toLowerCase()}. Based on
@@ -654,7 +654,7 @@ function TimelineRow({ item }: { item: PatientProfile["timeline"][number] }) {
         )}
       </span>
       <div className="min-w-0 flex-1">
-        <p className="text-[12px] font-medium text-[#dbe4f3]">{item.title}</p>
+        <p className="text-[12px] font-medium text-[#dedee1]">{item.title}</p>
         <p className="mt-0.5 truncate text-[11px] text-muted-foreground">{item.detail}</p>
       </div>
       <span className="shrink-0 text-[10px] text-muted-foreground/70">{timeAgo(item.occurredAt)}</span>
@@ -682,11 +682,11 @@ function AppointmentTable({ appointments, compact = false }: { appointments: Pat
         <tbody>
           {appointments.map((appointment) => (
             <tr key={appointment.id} className="border-b border-line/60 last:border-0">
-              <td className="py-2.5 pr-2 text-[12px] text-[#c5d2e8]">{formatDate(appointment.startsAt, "d MMM yyyy")}</td>
+              <td className="py-2.5 pr-2 text-[12px] text-[#c7c7cd]">{formatDate(appointment.startsAt, "d MMM yyyy")}</td>
               <td className="truncate px-2 py-2.5 text-[12px] text-muted-foreground">{appointment.treatmentLabel}</td>
               {compact ? null : <td className="truncate px-2 py-2.5 text-[12px] text-muted-foreground">{appointment.providerName ?? "—"}</td>}
               <td className="truncate px-2 py-2.5 text-[12px] text-muted-foreground">{appointment.locationName ?? "—"}</td>
-              <td className="tabular px-2 py-2.5 text-[12px] text-[#c5d2e8]">
+              <td className="tabular px-2 py-2.5 text-[12px] text-[#c7c7cd]">
                 {appointment.productionValue ? formatCurrency(appointment.productionValue) : "—"}
               </td>
               <td className="whitespace-nowrap py-2.5 pl-2">

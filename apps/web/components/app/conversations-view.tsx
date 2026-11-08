@@ -147,7 +147,7 @@ export function ConversationsView({
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Search conversations…"
-                className="h-7 w-full rounded-[5px] border border-line bg-surface-2 pl-8 pr-2 text-[11px] text-ink outline-none placeholder:text-muted-foreground focus:border-[#2a4a78]"
+                className="h-7 w-full rounded-[5px] border border-line bg-surface-2 pl-8 pr-2 text-[11px] text-ink outline-none placeholder:text-muted-foreground focus:border-[#006ec3]/60"
               />
             </div>
             <div className="mt-2 flex items-center gap-1 overflow-x-auto app-scroll">
@@ -187,7 +187,7 @@ export function ConversationsView({
                     }}
                     className={cn(
                       "relative flex w-full items-start gap-2.5 border-b border-line/60 px-3 py-2.5 text-left transition-colors",
-                      active ? "bg-[#0b1b34]" : "hover:bg-white/[0.02]"
+                      active ? "bg-[#232326]" : "hover:bg-white/[0.02]"
                     )}
                   >
                     {active ? <span className="absolute left-0 top-1/2 h-6 w-[2px] -translate-y-1/2 rounded-full bg-[#53d2e5]" /> : null}
@@ -197,7 +197,7 @@ export function ConversationsView({
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center justify-between gap-2">
-                        <span className={cn("truncate text-[11px] font-medium", thread.unread ? "text-ink" : "text-[#c5d2e8]")}>{thread.patient.name}</span>
+                        <span className={cn("truncate text-[11px] font-medium", thread.unread ? "text-ink" : "text-[#c7c7cd]")}>{thread.patient.name}</span>
                         <span className="shrink-0 text-[9px] text-muted-foreground/70">{timeAgo(lastAt)}</span>
                       </div>
                       <p className="mt-0.5 line-clamp-1 text-[10px] text-muted-foreground">{preview}</p>
@@ -243,7 +243,7 @@ export function ConversationsView({
             <div className="flex items-center gap-1">
               <Link
                 href={`/app/appointments?patient=${selected.patient.id}`}
-                className="hidden h-7 items-center gap-1 rounded-[5px] border border-line px-2 text-[10px] font-medium text-[#c2cde0] transition-colors hover:bg-white/[0.05] hover:text-ink sm:inline-flex"
+                className="hidden h-7 items-center gap-1 rounded-[5px] border border-line px-2 text-[10px] font-medium text-[#c4c4ca] transition-colors hover:bg-white/[0.05] hover:text-ink sm:inline-flex"
               >
                 <CalendarPlus className="size-3" /> Schedule
               </Link>
@@ -283,8 +283,8 @@ export function ConversationsView({
                   <div
                     className={`rounded-[7px] px-2.5 py-2 text-[12px] leading-relaxed ${
                       message.direction === "outbound"
-                        ? "bg-[#0b3560] text-[#e8f2ff]"
-                        : "border border-line bg-surface-2 text-[#c5d2e8]"
+                        ? "bg-[#333338] text-[#ececf0]"
+                        : "border border-line bg-surface-2 text-[#c7c7cd]"
                     }`}
                   >
                     {message.body}
@@ -319,7 +319,7 @@ export function ConversationsView({
                 </button>
               ))}
             </div>
-            <div className="rounded-[6px] border border-line bg-surface-2 focus-within:border-[#2a4a78]">
+            <div className="rounded-[6px] border border-line bg-surface-2 focus-within:border-[#006ec3]/60">
               <textarea
                 value={composer}
                 onChange={(event) => setComposer(event.target.value)}
@@ -373,19 +373,19 @@ export function ConversationsView({
               </div>
               <div className="flex items-center justify-between text-[11px]">
                 <span className="text-muted-foreground">Recall due</span>
-                <span className="text-[#c5d2e8]">{relativeDay(selected.patient.recallDue)}</span>
+                <span className="text-[#c7c7cd]">{relativeDay(selected.patient.recallDue)}</span>
               </div>
               <div className="flex items-center justify-between text-[11px]">
                 <span className="text-muted-foreground">Last visit</span>
-                <span className="text-[#c5d2e8]">{relativeDay(selected.patient.lastVisitAt)}</span>
+                <span className="text-[#c7c7cd]">{relativeDay(selected.patient.lastVisitAt)}</span>
               </div>
               <div className="flex items-center justify-between text-[11px]">
                 <span className="text-muted-foreground">Est. value</span>
-                <span className="tabular text-[#c5d2e8]">{formatCurrency(selected.patient.estimatedValue)}</span>
+                <span className="tabular text-[#c7c7cd]">{formatCurrency(selected.patient.estimatedValue)}</span>
               </div>
               <div className="flex items-center justify-between text-[11px]">
                 <span className="text-muted-foreground">Campaign</span>
-                <span className="truncate pl-2 text-right text-[#c5d2e8]">{selected.patient.treatmentLabel} recall</span>
+                <span className="truncate pl-2 text-right text-[#c7c7cd]">{selected.patient.treatmentLabel} recall</span>
               </div>
             </div>
             <Link
@@ -420,19 +420,19 @@ export function ConversationsView({
               <div className="mt-1.5 space-y-1.5 text-[10px] text-muted-foreground">
                 <p className="flex items-center justify-between gap-2">
                   <span>Channel</span>
-                  <span className="text-[#c5d2e8]">{selected.channel}</span>
+                  <span className="text-[#c7c7cd]">{selected.channel}</span>
                 </p>
                 <p className="flex items-center justify-between gap-2">
                   <span>Status</span>
-                  <span className="text-[#c5d2e8]">{selected.status}</span>
+                  <span className="text-[#c7c7cd]">{selected.status}</span>
                 </p>
                 <p className="flex items-center justify-between gap-2">
                   <span>Last message</span>
-                  <span className="text-[#c5d2e8]">{timeAgo(selected.lastAt)}</span>
+                  <span className="text-[#c7c7cd]">{timeAgo(selected.lastAt)}</span>
                 </p>
                 <p className="flex items-center justify-between gap-2">
                   <span>Location</span>
-                  <span className="truncate text-right text-[#c5d2e8]">{selected.patient.locationName ?? "—"}</span>
+                  <span className="truncate text-right text-[#c7c7cd]">{selected.patient.locationName ?? "—"}</span>
                 </p>
               </div>
             </div>

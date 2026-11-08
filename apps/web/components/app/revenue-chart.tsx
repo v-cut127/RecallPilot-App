@@ -113,7 +113,7 @@ export function RevenueChart({
                 <span className="h-[2px] w-3 rounded-full bg-[#53d2e5]" /> Recovered
               </span>
               <span className="flex items-center gap-1.5">
-                <span className="h-[2px] w-3 rounded-full border-t border-dashed border-[#4a5975]" /> Previous
+                <span className="h-[2px] w-3 rounded-full border-t border-dashed border-[#494950]" /> Previous
               </span>
             </div>
             <Segmented options={options} value={range} onChange={setRange} ariaLabel="Chart range" />
@@ -148,7 +148,7 @@ export function RevenueChart({
             <path
               d={previousPath}
               fill="none"
-              stroke="#45546f"
+              stroke="#494950"
               strokeWidth="1.25"
               strokeDasharray="3 3"
               vectorEffect="non-scaling-stroke"
@@ -161,7 +161,7 @@ export function RevenueChart({
                   y1="0"
                   x2={geometry.current[hover]!.x}
                   y2="100"
-                  stroke="#2a3a57"
+                  stroke="#343439"
                   strokeWidth="1"
                   vectorEffect="non-scaling-stroke"
                 />
@@ -170,7 +170,7 @@ export function RevenueChart({
                   cy={geometry.current[hover]!.y}
                   r="2.4"
                   fill="#53d2e5"
-                  stroke="#04101f"
+                  stroke="#1a1a1b"
                   strokeWidth="1.2"
                   vectorEffect="non-scaling-stroke"
                 />

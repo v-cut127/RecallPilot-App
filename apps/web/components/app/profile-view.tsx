@@ -57,17 +57,17 @@ export function ProfileView({
               }}
             >
               <label className="block">
-                <span className="mb-1.5 block text-[11px] font-medium text-[#a9b6cc]">Full name</span>
+                <span className="mb-1.5 block text-[11px] font-medium text-[#ababb2]">Full name</span>
                 <input
                   name="fullName"
                   defaultValue={user.name}
                   minLength={2}
                   maxLength={120}
-                  className="h-8 w-full rounded-[6px] border border-line bg-surface-2 px-2.5 text-[12px] text-ink outline-none transition-colors focus:border-[#2a4a78]"
+                  className="h-8 w-full rounded-[6px] border border-line bg-surface-2 px-2.5 text-[12px] text-ink outline-none transition-colors focus:border-[#006ec3]/60"
                 />
               </label>
               <label className="block">
-                <span className="mb-1.5 block text-[11px] font-medium text-[#a9b6cc]">Email</span>
+                <span className="mb-1.5 block text-[11px] font-medium text-[#ababb2]">Email</span>
                 <input
                   value={user.email}
                   readOnly
@@ -113,19 +113,19 @@ export function ProfileView({
             <div className="space-y-2.5 px-4 py-3">
               <div className="flex items-center justify-between gap-2 text-[11px]">
                 <span className="text-muted-foreground">Workspace</span>
-                <span className="truncate text-right text-[#c5d2e8]">{organization.name}</span>
+                <span className="truncate text-right text-[#c7c7cd]">{organization.name}</span>
               </div>
               <div className="flex items-center justify-between gap-2 text-[11px]">
                 <span className="text-muted-foreground">Role</span>
-                <span className="capitalize text-[#c5d2e8]">{role}</span>
+                <span className="capitalize text-[#c7c7cd]">{role}</span>
               </div>
               <div className="flex items-center justify-between gap-2 text-[11px]">
                 <span className="text-muted-foreground">Workspace slug</span>
-                <span className="text-[#c5d2e8]">{organization.slug}</span>
+                <span className="text-[#c7c7cd]">{organization.slug}</span>
               </div>
               <div className="flex items-center justify-between gap-2 text-[11px]">
                 <span className="text-muted-foreground">Member since</span>
-                <span className="text-[#c5d2e8]">{formatDate(joinedAt, "d MMM yyyy")}</span>
+                <span className="text-[#c7c7cd]">{formatDate(joinedAt, "d MMM yyyy")}</span>
               </div>
             </div>
           </Panel>

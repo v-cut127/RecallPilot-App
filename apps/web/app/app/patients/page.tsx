@@ -183,15 +183,15 @@ export default async function PatientsPage({
 
         <div className="flex flex-wrap items-center justify-between gap-2 border-t border-line px-3 py-2.5">
           <p className="text-[11px] text-muted-foreground">
-            Showing <span className="tabular text-[#c5d2e8]">{start.toLocaleString("en-US")}–{end.toLocaleString("en-US")}</span> of{" "}
-            <span className="tabular text-[#c5d2e8]">{data.total.toLocaleString("en-US")}</span>
+            Showing <span className="tabular text-[#c7c7cd]">{start.toLocaleString("en-US")}–{end.toLocaleString("en-US")}</span> of{" "}
+            <span className="tabular text-[#c7c7cd]">{data.total.toLocaleString("en-US")}</span>
           </p>
           <div className="flex items-center gap-1">
             <Link
               href={pageHref(data.page - 1)}
               aria-disabled={data.page <= 1}
               className={`inline-flex h-6 items-center rounded-[4px] border border-line px-2 text-[11px] font-medium transition-colors ${
-                data.page <= 1 ? "pointer-events-none opacity-40" : "text-[#c2cde0] hover:bg-white/[0.05] hover:text-ink"
+                data.page <= 1 ? "pointer-events-none opacity-40" : "text-[#c4c4ca] hover:bg-white/[0.05] hover:text-ink"
               }`}
             >
               Previous
@@ -203,7 +203,7 @@ export default async function PatientsPage({
               href={pageHref(data.page + 1)}
               aria-disabled={data.page >= pageCount}
               className={`inline-flex h-6 items-center rounded-[4px] border border-line px-2 text-[11px] font-medium transition-colors ${
-                data.page >= pageCount ? "pointer-events-none opacity-40" : "text-[#c2cde0] hover:bg-white/[0.05] hover:text-ink"
+                data.page >= pageCount ? "pointer-events-none opacity-40" : "text-[#c4c4ca] hover:bg-white/[0.05] hover:text-ink"
               }`}
             >
               Next

@@ -24,9 +24,9 @@ function rangeFor(key: "3m" | "12m", points: Array<{ label: string; fullLabel: s
 }
 
 const STAGE_STYLES: Record<string, string> = {
-  Identified: "border-line bg-white/[0.03] text-[#a7b2c7]",
+  Identified: "border-line bg-white/[0.03] text-[#ababb2]",
   Contacted: "border-[#53d2e5]/20 bg-[#53d2e5]/10 text-[#a9e7f1]",
-  Replied: "border-[#2f8fe0]/25 bg-[#2f8fe0]/10 text-[#8ed8ff]",
+  Replied: "border-[#006ec3]/25 bg-[#006ec3]/10 text-[#8ed8ff]",
   Booked: "border-[#4cc38a]/20 bg-[#4cc38a]/10 text-[#83e0b3]",
 };
 
@@ -90,7 +90,7 @@ export default async function RevenuePage() {
                         <input type="hidden" name="auditId" value={data.latestAudit.id} />
                         <button
                           type="submit"
-                          className="inline-flex h-6 items-center rounded-[4px] border border-line px-2 text-[10px] font-medium text-[#c2cde0] transition-colors hover:bg-white/[0.05] hover:text-ink"
+                          className="inline-flex h-6 items-center rounded-[4px] border border-line px-2 text-[10px] font-medium text-[#c4c4ca] transition-colors hover:bg-white/[0.05] hover:text-ink"
                         >
                           Revoke link
                         </button>
@@ -124,7 +124,7 @@ export default async function RevenuePage() {
                   <div className="flex min-w-0 items-center gap-2">
                     <Avatar name={recovery.patientName} size="sm" />
                     <div className="min-w-0">
-                      <p className="truncate text-[11px] font-medium text-[#dbe4f3]">{recovery.patientName}</p>
+                      <p className="truncate text-[11px] font-medium text-[#dedee1]">{recovery.patientName}</p>
                       <p className="text-[10px] text-muted-foreground">{formatDate(recovery.date, "d MMM yyyy")}</p>
                     </div>
                   </div>
@@ -161,7 +161,7 @@ export default async function RevenuePage() {
                       <Link href={`/app/patients/${item.patient.id}`} className="flex min-w-0 items-center gap-2">
                         <Avatar name={item.patient.name} size="sm" />
                         <span className="min-w-0">
-                          <span className="block truncate text-[12px] font-medium text-[#dbe4f3]">{item.patient.name}</span>
+                          <span className="block truncate text-[12px] font-medium text-[#dedee1]">{item.patient.name}</span>
                           <span className="block text-[10px] text-muted-foreground">{item.patient.treatmentLabel}</span>
                         </span>
                       </Link>
@@ -174,12 +174,12 @@ export default async function RevenuePage() {
                     <td className="whitespace-nowrap px-2 py-2.5 text-[11px] text-muted-foreground">
                       {item.patient.recallDue ? formatDate(item.patient.recallDue, "d MMM") : "—"}
                     </td>
-                    <td className="tabular px-2 py-2.5 text-[12px] text-[#c5d2e8]">{formatCurrency(item.value)}</td>
+                    <td className="tabular px-2 py-2.5 text-[12px] text-[#c7c7cd]">{formatCurrency(item.value)}</td>
                     <td className="px-2 py-2.5">
                       <div className="flex items-center gap-2">
-                        <span className="tabular text-[11px] text-[#c5d2e8]">{item.probability}%</span>
+                        <span className="tabular text-[11px] text-[#c7c7cd]">{item.probability}%</span>
                         <span className="h-1 w-10 overflow-hidden rounded-full bg-white/[0.06]">
-                          <span className="block h-full rounded-full bg-[#2f8fe0]" style={{ width: `${item.probability}%` }} />
+                          <span className="block h-full rounded-full bg-[#006ec3]" style={{ width: `${item.probability}%` }} />
                         </span>
                       </div>
                     </td>
@@ -205,7 +205,7 @@ export default async function RevenuePage() {
                   <div className="mb-1 flex items-center justify-between text-[11px]">
                     <span className="text-muted-foreground">{item.label}</span>
                     <span className="flex items-center gap-2 tabular">
-                      <span className="text-[#c5d2e8]">{formatCurrency(item.value)}</span>
+                      <span className="text-[#c7c7cd]">{formatCurrency(item.value)}</span>
                       <span className="text-muted-foreground/70">{item.open}</span>
                     </span>
                   </div>
@@ -221,7 +221,7 @@ export default async function RevenuePage() {
               {data.pipeline.slice(0, 5).map((item) => (
                 <Link key={item.patient.id} href={`/app/patients/${item.patient.id}`} className="flex items-center justify-between gap-2 px-4 py-2.5 hover:bg-white/[0.018]">
                   <div className="min-w-0">
-                    <p className="truncate text-[11px] font-medium text-[#dbe4f3]">{item.patient.name}</p>
+                    <p className="truncate text-[11px] font-medium text-[#dedee1]">{item.patient.name}</p>
                     <p className="text-[10px] text-muted-foreground">{item.patient.recallStatus.replace("_", " ")}</p>
                   </div>
                   <RecallBadge status={item.patient.recallStatus} />

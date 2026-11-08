@@ -8,7 +8,7 @@ import type { AppointmentFormPatient } from "@/lib/app-data";
 import { Modal } from "./client-ui";
 
 const inputClass =
-  "h-8 w-full rounded-[6px] border border-line bg-surface-2 px-2.5 text-[12px] text-ink outline-none transition-colors placeholder:text-muted-foreground focus:border-[#2a4a78]";
+  "h-8 w-full rounded-[6px] border border-line bg-surface-2 px-2.5 text-[12px] text-ink outline-none transition-colors placeholder:text-muted-foreground focus:border-[#006ec3]/60";
 
 function defaultStart(): string {
   const date = new Date();
@@ -80,7 +80,7 @@ export function NewAppointmentButton({
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="inline-flex h-7 items-center rounded-[5px] border border-line px-2.5 text-[12px] font-medium text-[#c2cde0] transition-colors hover:bg-white/[0.05] hover:text-ink"
+              className="inline-flex h-7 items-center rounded-[5px] border border-line px-2.5 text-[12px] font-medium text-[#c4c4ca] transition-colors hover:bg-white/[0.05] hover:text-ink"
             >
               Cancel
             </button>
@@ -90,7 +90,7 @@ export function NewAppointmentButton({
       >
         <form id="new-appointment-form" action={createAppointmentAction} className="space-y-3.5">
           <label className="block">
-            <span className="mb-1.5 block text-[11px] font-medium text-[#a9b6cc]">Patient</span>
+            <span className="mb-1.5 block text-[11px] font-medium text-[#ababb2]">Patient</span>
             <select
               name="patientId"
               value={patientId}
@@ -112,7 +112,7 @@ export function NewAppointmentButton({
           </label>
           <div className="grid gap-3.5 sm:grid-cols-2">
             <label className="block">
-              <span className="mb-1.5 block text-[11px] font-medium text-[#a9b6cc]">Date and time</span>
+              <span className="mb-1.5 block text-[11px] font-medium text-[#ababb2]">Date and time</span>
               <input
                 name="startsAt"
                 type="datetime-local"
@@ -123,7 +123,7 @@ export function NewAppointmentButton({
               />
             </label>
             <label className="block">
-              <span className="mb-1.5 block text-[11px] font-medium text-[#a9b6cc]">Treatment</span>
+              <span className="mb-1.5 block text-[11px] font-medium text-[#ababb2]">Treatment</span>
               <select name="treatment" value={treatment} onChange={(event) => setTreatment(event.target.value as AppointmentFormPatient["treatment"])} className={inputClass}>
                 <option value="hygiene">Hygiene</option>
                 <option value="checkup">Check-up</option>

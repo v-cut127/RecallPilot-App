@@ -199,7 +199,7 @@ export function AppShell({
       <div className="flex min-h-screen">
         <aside
           className={cn(
-            "sticky top-0 hidden h-screen shrink-0 flex-col border-r border-line bg-surface-1 lg:flex",
+            "sticky top-0 hidden h-screen shrink-0 flex-col border-r border-line bg-surface-0 lg:flex",
             collapsed ? "w-[60px]" : "w-[230px]"
           )}
         >
@@ -240,7 +240,7 @@ export function AppShell({
             className="absolute inset-0 bg-black/65 backdrop-blur-[2px]"
             onClick={() => setMobileOpen(false)}
           />
-          <aside className="app-slide-left relative flex h-full w-[280px] max-w-[85vw] flex-col border-r border-line bg-surface-1 shadow-2xl">
+          <aside className="app-slide-left relative flex h-full w-[280px] max-w-[85vw] flex-col border-r border-line bg-surface-0 shadow-2xl">
             <div className="absolute right-2 top-3 z-10">
               <button
                 type="button"
@@ -351,19 +351,19 @@ function SidebarContent({
                       "group relative flex h-7 items-center gap-2.5 rounded-[5px] text-[12px] font-medium transition-colors",
                       collapsed ? "justify-center px-0" : "px-2",
                       active
-                        ? "bg-[#0c1a33] text-ink"
-                        : "text-[#93a0b8] hover:bg-white/[0.035] hover:text-[#dbe4f3]"
+                        ? "bg-[#006ec3]/[0.16] text-ink"
+                        : "text-[#94949c] hover:bg-white/[0.035] hover:text-[#dedee1]"
                     )}
                   >
                     {active ? (
                       <span className="absolute left-0 top-1/2 h-3.5 w-[2px] -translate-y-1/2 rounded-full bg-[#53d2e5]" />
                     ) : null}
-                    <Icon className={cn("size-4 shrink-0", active ? "text-[#7fd8e7]" : "text-[#7e8ca6] group-hover:text-[#b9c5d9]")} strokeWidth={1.8} />
+                    <Icon className={cn("size-4 shrink-0", active ? "text-[#7fd8e7]" : "text-[#808089] group-hover:text-[#babac0]")} strokeWidth={1.8} />
                     {collapsed ? null : (
                       <>
                         <span className="flex-1 truncate">{item.label}</span>
                         {badge ? (
-                          <span className="rounded-[4px] bg-white/[0.05] px-1 text-[10px] tabular text-[#8796af]">{badge}</span>
+                          <span className="rounded-[4px] bg-white/[0.05] px-1 text-[10px] tabular text-[#8a8a92]">{badge}</span>
                         ) : null}
                       </>
                     )}
@@ -388,10 +388,10 @@ function SidebarContent({
                 className={cn(
                   "flex h-7 items-center gap-2.5 rounded-[5px] text-[12px] font-medium transition-colors",
                   collapsed ? "justify-center px-0" : "px-2",
-                  active ? "bg-[#0c1a33] text-ink" : "text-[#93a0b8] hover:bg-white/[0.035] hover:text-[#dbe4f3]"
+                  active ? "bg-[#006ec3]/[0.16] text-ink" : "text-[#94949c] hover:bg-white/[0.035] hover:text-[#dedee1]"
                 )}
               >
-                <Icon className={cn("size-4 shrink-0", active ? "text-[#7fd8e7]" : "text-[#7e8ca6]")} strokeWidth={1.8} />
+                <Icon className={cn("size-4 shrink-0", active ? "text-[#7fd8e7]" : "text-[#808089]")} strokeWidth={1.8} />
                 {collapsed ? null : <span className="flex-1 truncate">{item.label}</span>}
               </Link>
             );
@@ -412,7 +412,7 @@ function WorkspaceSwitcher({ collapsed, org, locations }: { collapsed: boolean; 
     ...locations.map((location) => ({
       label: `${location.name}${location.city ? ` · ${location.city}` : ""}`,
       href: "/app/settings",
-      icon: <span className="block size-1.5 rounded-full bg-[#46536b]" />,
+      icon: <span className="block size-1.5 rounded-full bg-[#494950]" />,
     })),
     { label: "Workspace settings", href: "/app/settings", icon: <Settings />, separator: true },
     { label: "Invite teammates", href: "/app/settings", icon: <Plus /> },
@@ -431,13 +431,13 @@ function WorkspaceSwitcher({ collapsed, org, locations }: { collapsed: boolean; 
             collapsed && "justify-center border-transparent bg-transparent p-1"
           )}
         >
-          <span className="flex size-6 shrink-0 items-center justify-center rounded-[5px] border border-[#2b5b8d]/50 bg-[#0b2a4d] text-[10px] font-semibold text-[#8ed8ff]">
+          <span className="flex size-6 shrink-0 items-center justify-center rounded-[5px] border border-[#006ec3]/50 bg-[#2a2a2f] text-[10px] font-semibold text-[#8ed8ff]">
             {org.name.slice(0, 1)}
           </span>
           {collapsed ? null : (
             <>
               <span className="min-w-0 flex-1">
-                <span className="block truncate text-[11px] font-medium text-[#dbe4f3]">{org.name}</span>
+                <span className="block truncate text-[11px] font-medium text-[#dedee1]">{org.name}</span>
                 <span className="block text-[10px] text-muted-foreground">{locations.length} location{locations.length === 1 ? "" : "s"}</span>
               </span>
               <ChevronsUpDown className="size-3.5 shrink-0 text-muted-foreground" />
@@ -473,7 +473,7 @@ function UserMenu({ collapsed, user, displayName }: { collapsed: boolean; user: 
           <Avatar name={displayName} size="sm" />
           {collapsed ? null : (
             <span className="min-w-0 flex-1">
-              <span className="block truncate text-[11px] font-medium text-[#dbe4f3]">{displayName}</span>
+              <span className="block truncate text-[11px] font-medium text-[#dedee1]">{displayName}</span>
               <span className="block truncate text-[10px] text-muted-foreground">{user.email}</span>
             </span>
           )}
@@ -535,13 +535,13 @@ function TopBar({
         </button>
         <div className="flex min-w-0 items-center gap-1.5 text-[12px]">
           <span className="hidden text-muted-foreground sm:inline">Workspace</span>
-          <span className="hidden text-[#3f4c61] sm:inline">/</span>
+          <span className="hidden text-[#454549] sm:inline">/</span>
           {parent ? (
             <>
               <Link href={`/app/${segments[1]}`} className="hidden text-muted-foreground transition-colors hover:text-ink sm:inline">
                 {parent}
               </Link>
-              <span className="hidden text-[#3f4c61] sm:inline">/</span>
+              <span className="hidden text-[#454549] sm:inline">/</span>
             </>
           ) : null}
           <span className="truncate font-medium text-ink">{label}</span>
@@ -552,7 +552,7 @@ function TopBar({
         <button
           type="button"
           onClick={onOpenPalette}
-          className="group mr-1 hidden h-8 w-[248px] items-center gap-2 rounded-[6px] border border-line bg-surface-2 px-2.5 text-left text-[12px] text-muted-foreground transition-colors hover:border-[#263a5c] hover:bg-surface-3 md:flex"
+          className="group mr-1 hidden h-8 w-[248px] items-center gap-2 rounded-[6px] border border-line bg-surface-2 px-2.5 text-left text-[12px] text-muted-foreground transition-colors hover:border-[#3a3a3f] hover:bg-surface-3 md:flex"
         >
           <Search className="size-3.5" />
           <span className="flex-1 truncate whitespace-nowrap">Search patients, pages…</span>
@@ -608,7 +608,7 @@ function TopBar({
                   >
                     <NotificationIcon kind={notification.kind} />
                     <div className="min-w-0 flex-1">
-                      <p className="text-[12px] font-medium leading-snug text-[#dbe4f3]">{notification.title}</p>
+                      <p className="text-[12px] font-medium leading-snug text-[#dedee1]">{notification.title}</p>
                       <p className="mt-0.5 line-clamp-2 text-[11px] leading-relaxed text-muted-foreground">{notification.detail}</p>
                       <p className="mt-1 text-[10px] text-muted-foreground/70">{timeAgo(notification.at)}</p>
                     </div>
@@ -648,7 +648,7 @@ function NotificationIcon({ kind }: { kind: ShellNotification["kind"] }) {
         ? "text-[#5bd39a] bg-[#5bd39a]/10"
         : kind === "recall"
           ? "text-[#e3b341] bg-[#e3b341]/10"
-          : "text-[#7d8ba6] bg-white/[0.05]";
+          : "text-[#7f7f88] bg-white/[0.05]";
   return (
     <span className={cn("mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-[5px]", tone)}>
       <Icon className="size-3.5" />
@@ -818,10 +818,10 @@ function CommandPalette({
                       }}
                       className={cn(
                         "flex w-full items-center gap-2.5 rounded-[5px] px-2 py-1.5 text-left transition-colors",
-                        index === active ? "bg-[#0c1a33] text-ink" : "text-[#a9b6cc] hover:bg-white/[0.035]"
+                        index === active ? "bg-[#006ec3]/[0.16] text-ink" : "text-[#ababb2] hover:bg-white/[0.035]"
                       )}
                     >
-                      <Icon className={cn("size-3.5 shrink-0", index === active ? "text-[#7fd8e7]" : "text-[#6e7c95]")} />
+                      <Icon className={cn("size-3.5 shrink-0", index === active ? "text-[#7fd8e7]" : "text-[#717179]")} />
                       <span className="min-w-0 flex-1 truncate text-[12px] font-medium">{result.label}</span>
                       {result.sublabel ? <span className="max-w-[150px] truncate text-[10px] text-muted-foreground">{result.sublabel}</span> : null}
                       {index === active ? <CornerDownLeft className="size-3 text-muted-foreground" /> : null}

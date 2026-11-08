@@ -12,7 +12,7 @@ const BUCKET_TONES: Record<string, string> = {
   cyan: "bg-[#53d2e5]",
   amber: "bg-[#e3b341]",
   red: "bg-[#f2777a]",
-  muted: "bg-[#48566f]",
+  muted: "bg-[#494950]",
 };
 
 export default async function AnalyticsPage() {
@@ -74,13 +74,13 @@ export default async function AnalyticsPage() {
                 <div key={stage.label}>
                   <div className="mb-1 flex items-center justify-between text-[11px]">
                     <span className="text-muted-foreground">{stage.label}</span>
-                    <span className="tabular text-[#c5d2e8]">
+                    <span className="tabular text-[#c7c7cd]">
                       {formatNumber(stage.value)} <span className="text-muted-foreground/70">· {stage.pct}%</span>
                     </span>
                   </div>
                   <div className="h-1.5 overflow-hidden rounded-full bg-white/[0.05]">
                     <div
-                      className={index === 0 ? "h-full rounded-full bg-[#2f5f9a]" : "h-full rounded-full bg-[#2f8fe0]"}
+                      className={index === 0 ? "h-full rounded-full bg-[#2f5f9a]" : "h-full rounded-full bg-[#006ec3]"}
                       style={{ width: `${pct}%` }}
                     />
                   </div>
@@ -105,7 +105,7 @@ export default async function AnalyticsPage() {
                 <div className="mb-1 flex items-center justify-between gap-2 text-[11px]">
                   <span className="text-muted-foreground">{item.label}</span>
                   <span className="flex items-center gap-2 tabular">
-                    <span className="text-[#c5d2e8]">{formatCurrency(item.recovered)}</span>
+                    <span className="text-[#c7c7cd]">{formatCurrency(item.recovered)}</span>
                     <span className="text-muted-foreground/70">{item.due} due</span>
                   </span>
                 </div>
@@ -145,13 +145,13 @@ export default async function AnalyticsPage() {
               <tbody>
                 {data.byLocation.map((location) => (
                   <tr key={location.name} className="border-b border-line/60 last:border-0">
-                    <td className="truncate py-2.5 pl-4 pr-2 text-[12px] font-medium text-[#dbe4f3]">{location.name}</td>
+                    <td className="truncate py-2.5 pl-4 pr-2 text-[12px] font-medium text-[#dedee1]">{location.name}</td>
                     <td className="tabular px-2 py-2.5 text-[12px] text-muted-foreground">{formatNumber(location.patients)}</td>
-                    <td className="tabular px-2 py-2.5 text-[12px] text-[#c5d2e8]">{formatNumber(location.due)}</td>
+                    <td className="tabular px-2 py-2.5 text-[12px] text-[#c7c7cd]">{formatNumber(location.due)}</td>
                     <td className="tabular px-2 py-2.5 text-[12px] text-[#83e0b3]">{formatCurrency(location.recovered)}</td>
                     <td className="px-2 py-2.5">
                       <div className="flex items-center gap-2">
-                        <span className="tabular text-[11px] text-[#c5d2e8]">{formatPercent(location.rate)}</span>
+                        <span className="tabular text-[11px] text-[#c7c7cd]">{formatPercent(location.rate)}</span>
                         <span className="h-1 w-10 overflow-hidden rounded-full bg-white/[0.06]">
                           <span className="block h-full rounded-full bg-[#53d2e5]" style={{ width: `${Math.min(100, location.rate)}%` }} />
                         </span>

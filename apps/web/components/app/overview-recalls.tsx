@@ -39,13 +39,13 @@ export function UpcomingRecallsTable({ rows }: { rows: UpcomingRecallRow[] }) {
               <td className="py-2.5 pl-4 pr-2">
                 <Link href={`/app/patients/${row.id}`} className="flex min-w-0 items-center gap-2">
                   <Avatar name={row.name} size="sm" />
-                  <span className="truncate text-[12px] font-medium text-[#dbe4f3] group-hover:text-ink">{row.name}</span>
+                  <span className="truncate text-[12px] font-medium text-[#dedee1] group-hover:text-ink">{row.name}</span>
                 </Link>
               </td>
               <td className="truncate px-2 py-2.5 text-[12px] text-muted-foreground">{row.contact}</td>
               <td className="truncate px-2 py-2.5 text-[12px] text-muted-foreground">{relativeDay(row.lastVisitAt)}</td>
               <td className="px-2 py-2.5">
-                <span className="whitespace-nowrap text-[12px] text-[#c5d2e8]">{relativeDay(row.recallDue)}</span>
+                <span className="whitespace-nowrap text-[12px] text-[#c7c7cd]">{relativeDay(row.recallDue)}</span>
               </td>
               <td className="px-2 py-2.5">
                 <RecallBadge status={row.status} />

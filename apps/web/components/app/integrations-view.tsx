@@ -101,7 +101,7 @@ export function IntegrationsView({ config }: { config: { email: string; storage:
         actions={
           <button
             type="button"
-            className="inline-flex h-8 items-center gap-1.5 rounded-[6px] border border-line bg-white/[0.02] px-2.5 text-[12px] font-medium text-[#c2cde0] transition-colors hover:bg-white/[0.05] hover:text-ink"
+            className="inline-flex h-8 items-center gap-1.5 rounded-[6px] border border-line bg-white/[0.02] px-2.5 text-[12px] font-medium text-[#c4c4ca] transition-colors hover:bg-white/[0.05] hover:text-ink"
           >
             <Plus className="size-3.5" /> Request an integration
           </button>
@@ -135,7 +135,7 @@ export function IntegrationsView({ config }: { config: { email: string; storage:
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Search integrations…"
-              className="h-7 w-full rounded-[5px] border border-line bg-surface-2 pl-8 pr-2 text-[11px] text-ink outline-none placeholder:text-muted-foreground focus:border-[#2a4a78]"
+              className="h-7 w-full rounded-[5px] border border-line bg-surface-2 pl-8 pr-2 text-[11px] text-ink outline-none placeholder:text-muted-foreground focus:border-[#006ec3]/60"
             />
           </div>
         </div>
@@ -175,7 +175,7 @@ export function IntegrationsView({ config }: { config: { email: string; storage:
                           current.map((item) => (item.id === integration.id ? { ...item, connected: false } : item))
                         )
                       }
-                      className="inline-flex h-6 items-center rounded-[4px] border border-line px-2 text-[10px] font-medium text-[#c2cde0] transition-colors hover:bg-white/[0.05] hover:text-ink"
+                      className="inline-flex h-6 items-center rounded-[4px] border border-line px-2 text-[10px] font-medium text-[#c4c4ca] transition-colors hover:bg-white/[0.05] hover:text-ink"
                     >
                       {integration.managed ? "Manage" : "Disconnect"}
                     </button>
@@ -228,7 +228,7 @@ export function IntegrationsView({ config }: { config: { email: string; storage:
             <button
               type="button"
               onClick={() => setConnectTarget(null)}
-              className="inline-flex h-7 items-center rounded-[5px] border border-line px-2.5 text-[12px] font-medium text-[#c2cde0] transition-colors hover:bg-white/[0.05] hover:text-ink"
+              className="inline-flex h-7 items-center rounded-[5px] border border-line px-2.5 text-[12px] font-medium text-[#c4c4ca] transition-colors hover:bg-white/[0.05] hover:text-ink"
             >
               Cancel
             </button>
@@ -244,12 +244,12 @@ export function IntegrationsView({ config }: { config: { email: string; storage:
         }
       >
         <label className="block">
-          <span className="mb-1.5 block text-[11px] font-medium text-[#a9b6cc]">API key</span>
+          <span className="mb-1.5 block text-[11px] font-medium text-[#ababb2]">API key</span>
           <input
             value={apiKey}
             onChange={(event) => setApiKey(event.target.value)}
             placeholder="sk_live_…"
-            className="h-8 w-full rounded-[6px] border border-line bg-surface-2 px-2.5 font-mono text-[11px] text-ink outline-none placeholder:text-muted-foreground focus:border-[#2a4a78]"
+            className="h-8 w-full rounded-[6px] border border-line bg-surface-2 px-2.5 font-mono text-[11px] text-ink outline-none placeholder:text-muted-foreground focus:border-[#006ec3]/60"
           />
         </label>
         <p className="mt-2 text-[10px] leading-relaxed text-muted-foreground">

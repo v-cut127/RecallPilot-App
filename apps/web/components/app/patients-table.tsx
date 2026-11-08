@@ -66,7 +66,7 @@ export function ExportPatientsButton({ rows }: { rows: PatientTableRow[] }) {
     <button
       type="button"
       onClick={() => download(rows, "recallpilot-patients.csv")}
-      className="inline-flex h-8 items-center gap-1.5 rounded-[6px] border border-line bg-white/[0.02] px-2.5 text-[12px] font-medium text-[#c2cde0] transition-colors hover:bg-white/[0.05] hover:text-ink"
+      className="inline-flex h-8 items-center gap-1.5 rounded-[6px] border border-line bg-white/[0.02] px-2.5 text-[12px] font-medium text-[#c4c4ca] transition-colors hover:bg-white/[0.05] hover:text-ink"
     >
       <Download className="size-3.5" />
       Export
@@ -110,12 +110,12 @@ export function PatientsTable({
   return (
     <div>
       {selected.size > 0 ? (
-        <div className="flex h-10 items-center justify-between gap-3 border-b border-line bg-[#0b1c36] px-3">
+        <div className="flex h-10 items-center justify-between gap-3 border-b border-line bg-[#232326] px-3">
           <div className="flex items-center gap-2 text-[12px]">
             <span className="flex size-4 items-center justify-center rounded-[3px] bg-[#006ec3] text-[9px] font-semibold text-white">
               {selected.size}
             </span>
-            <span className="text-[#c5d2e8]">selected</span>
+            <span className="text-[#c7c7cd]">selected</span>
             <button type="button" onClick={() => setSelected(new Set())} className="ml-1 text-[11px] text-muted-foreground hover:text-ink">
               Clear
             </button>
@@ -123,14 +123,14 @@ export function PatientsTable({
           <div className="flex items-center gap-1.5">
             <Link
               href={selectedRows[0] ? `/app/conversations?patient=${selectedRows[0].id}` : "/app/conversations"}
-              className="inline-flex h-6 items-center gap-1 rounded-[4px] border border-line px-1.5 text-[11px] font-medium text-[#c2cde0] hover:bg-white/[0.05] hover:text-ink"
+              className="inline-flex h-6 items-center gap-1 rounded-[4px] border border-line px-1.5 text-[11px] font-medium text-[#c4c4ca] hover:bg-white/[0.05] hover:text-ink"
             >
               <MessageSquare className="size-3" /> Message
             </Link>
             <button
               type="button"
               onClick={() => download(selectedRows, "recallpilot-selection.csv")}
-              className="inline-flex h-6 items-center gap-1 rounded-[4px] border border-line px-1.5 text-[11px] font-medium text-[#c2cde0] hover:bg-white/[0.05] hover:text-ink"
+              className="inline-flex h-6 items-center gap-1 rounded-[4px] border border-line px-1.5 text-[11px] font-medium text-[#c4c4ca] hover:bg-white/[0.05] hover:text-ink"
             >
               <Download className="size-3" /> Export
             </button>
@@ -151,7 +151,7 @@ export function PatientsTable({
                   }
                   className={cn(
                     "flex size-3.5 items-center justify-center rounded-[3px] border transition-colors",
-                    allSelected ? "border-[#006ec3] bg-[#006ec3] text-white" : "border-[#2a3852] hover:border-[#3d5070]"
+                    allSelected ? "border-[#006ec3] bg-[#006ec3] text-white" : "border-[#38383d] hover:border-[#3a3a3f]"
                   )}
                 >
                   {allSelected ? <Check className="size-2.5" /> : null}
@@ -210,7 +210,7 @@ export function PatientsTable({
                       onClick={() => toggle(row.id)}
                       className={cn(
                         "flex size-3.5 items-center justify-center rounded-[3px] border transition-colors",
-                        isSelected ? "border-[#006ec3] bg-[#006ec3] text-white" : "border-[#2a3852] opacity-0 hover:border-[#3d5070] group-hover:opacity-100",
+                        isSelected ? "border-[#006ec3] bg-[#006ec3] text-white" : "border-[#38383d] opacity-0 hover:border-[#3a3a3f] group-hover:opacity-100",
                         isSelected && "opacity-100"
                       )}
                     >
@@ -221,21 +221,21 @@ export function PatientsTable({
                     <Link href={`/app/patients/${row.id}`} className="flex min-w-0 items-center gap-2">
                       <Avatar name={row.name} size="sm" />
                       <span className="min-w-0">
-                        <span className="block truncate text-[12px] font-medium text-[#dbe4f3] group-hover:text-ink">{row.name}</span>
+                        <span className="block truncate text-[12px] font-medium text-[#dedee1] group-hover:text-ink">{row.name}</span>
                         <span className="block truncate text-[10px] text-muted-foreground">{row.locationName ?? "Unassigned"}</span>
                       </span>
                     </Link>
                   </td>
                   <td className="px-2 py-2.5">
-                    <p className="truncate text-[12px] text-[#c5d2e8]">{row.phone ?? row.email ?? "—"}</p>
+                    <p className="truncate text-[12px] text-[#c7c7cd]">{row.phone ?? row.email ?? "—"}</p>
                     <p className="truncate text-[10px] text-muted-foreground">
                       {row.phone && row.email ? row.email : row.phone ? "Phone only" : row.email ? "Email only" : "No contact"}
                     </p>
                   </td>
                   <td className="truncate px-2 py-2.5 text-[12px] text-muted-foreground">{relativeDay(row.lastVisitAt)}</td>
-                  <td className="whitespace-nowrap px-2 py-2.5 text-[12px] text-[#c5d2e8]">{relativeDay(row.recallDue)}</td>
+                  <td className="whitespace-nowrap px-2 py-2.5 text-[12px] text-[#c7c7cd]">{relativeDay(row.recallDue)}</td>
                   <td className="truncate px-2 py-2.5 text-[12px] text-muted-foreground">{row.treatmentLabel}</td>
-                  <td className="tabular px-2 py-2.5 text-[12px] text-[#c5d2e8]">{formatCurrency(row.estimatedValue)}</td>
+                  <td className="tabular px-2 py-2.5 text-[12px] text-[#c7c7cd]">{formatCurrency(row.estimatedValue)}</td>
                   <td className="px-2 py-2.5">
                     <RecallBadge status={row.recallStatus} />
                   </td>
@@ -276,7 +276,7 @@ export function PatientsTable({
           <p className="mt-1 text-[12px] text-muted-foreground">Try a different status, treatment or search term.</p>
           <Link
             href="/app/patients"
-            className="mt-3 inline-flex h-7 items-center gap-1 rounded-[5px] border border-line px-2 text-[11px] font-medium text-[#c2cde0] hover:bg-white/[0.05] hover:text-ink"
+            className="mt-3 inline-flex h-7 items-center gap-1 rounded-[5px] border border-line px-2 text-[11px] font-medium text-[#c4c4ca] hover:bg-white/[0.05] hover:text-ink"
           >
             <X className="size-3" /> Clear filters
           </Link>

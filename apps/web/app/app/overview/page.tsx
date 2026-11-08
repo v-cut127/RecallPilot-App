@@ -54,7 +54,7 @@ export default async function OverviewPage() {
           <>
             <Link
               href="/app/import"
-              className="inline-flex h-8 items-center gap-1.5 rounded-[6px] border border-line bg-white/[0.02] px-2.5 text-[12px] font-medium text-[#c2cde0] transition-colors hover:bg-white/[0.05] hover:text-ink"
+              className="inline-flex h-8 items-center gap-1.5 rounded-[6px] border border-line bg-white/[0.02] px-2.5 text-[12px] font-medium text-[#c4c4ca] transition-colors hover:bg-white/[0.05] hover:text-ink"
             >
               <Upload className="size-3.5" />
               Import patients
@@ -138,7 +138,7 @@ export default async function OverviewPage() {
                     <Icon className="size-3.5" />
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="text-[12px] font-medium leading-snug text-[#dbe4f3]">{item.title}</p>
+                    <p className="text-[12px] font-medium leading-snug text-[#dedee1]">{item.title}</p>
                     <p className="mt-0.5 truncate text-[11px] text-muted-foreground">
                       {item.subject} · {item.detail}
                     </p>
@@ -156,7 +156,7 @@ export default async function OverviewPage() {
               <Sparkles className="size-3.5 text-[#53d2e5]" />
               <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#7fd8e7]">AI insight</p>
             </div>
-            <p className="mt-1.5 text-[12px] font-medium text-[#dbe4f3]">{data.insight.headline}</p>
+            <p className="mt-1.5 text-[12px] font-medium text-[#dedee1]">{data.insight.headline}</p>
             <p className="mt-1 line-clamp-3 text-[11px] leading-relaxed text-muted-foreground">{data.insight.body}</p>
             <Link
               href="/app/assistant"
@@ -210,12 +210,12 @@ export default async function OverviewPage() {
                 <div key={stage.label}>
                   <div className="mb-1 flex items-center justify-between text-[11px]">
                     <span className="text-muted-foreground">{stage.label}</span>
-                    <span className="tabular font-medium text-[#c5d2e8]">
+                    <span className="tabular font-medium text-[#c7c7cd]">
                       {formatNumber(stage.value)} <span className="text-muted-foreground/70">· {stage.pct}%</span>
                     </span>
                   </div>
                   <div className="h-1.5 overflow-hidden rounded-full bg-white/[0.05]">
-                    <div className="h-full rounded-full bg-[#2f8fe0]" style={{ width: `${stage.pct}%` }} />
+                    <div className="h-full rounded-full bg-[#006ec3]" style={{ width: `${stage.pct}%` }} />
                   </div>
                 </div>
               ))}
