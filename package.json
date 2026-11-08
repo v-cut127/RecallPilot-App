@@ -1,0 +1,50 @@
+{
+  "name": "recallpilot-app",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "RecallPilot product app — free recall audit, CSV import and revenue-recovery workspace.",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=22",
+    "npm": ">=11"
+  },
+  "scripts": {
+    "dev": "npm run dev --workspace @recallpilot/web",
+    "dev:worker": "npm run dev --workspace @recallpilot/worker",
+    "dev:all": "concurrently -k -n web,worker -c blue,magenta \"npm run dev\" \"npm run dev:worker\"",
+    "build": "npm run build --workspace @recallpilot/worker && npm run build --workspace @recallpilot/web",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "eslint .",
+    "test": "npm run test:unit",
+    "test:unit": "npm run test --workspace @recallpilot/core && npm run test --workspace @recallpilot/web",
+    "test:db": "npm run test:db --workspace @recallpilot/db",
+    "test:e2e": "playwright test",
+    "db:local:start": "node scripts/local-db.mjs start",
+    "db:local:stop": "node scripts/local-db.mjs stop",
+    "db:local:status": "node scripts/local-db.mjs status",
+    "db:bootstrap": "npm run db:bootstrap --workspace @recallpilot/db",
+    "db:migrate": "npm run db:migrate --workspace @recallpilot/db",
+    "db:reset": "npm run db:reset --workspace @recallpilot/db",
+    "db:seed": "npm run db:seed --workspace @recallpilot/db",
+    "seed:data": "npm run seed:data --workspace @recallpilot/db",
+    "benchmark:import": "tsx scripts/benchmark-import.ts",
+    "e2e:setup": "tsx scripts/e2e-setup.ts",
+    "supabase:provision": "powershell -ExecutionPolicy Bypass -File scripts/provision-supabase.ps1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@playwright/test": "^1.49.1",
+    "@types/node": "^22.10.5",
+    "concurrently": "^9.1.2",
+    "eslint": "^9.17.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "globals": "^15.14.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.2"
+  }
+}

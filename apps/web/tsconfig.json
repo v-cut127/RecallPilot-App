@@ -1,0 +1,23 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "noEmit": true,
+    "incremental": true,
+    "baseUrl": ".",
+    "plugins": [{ "name": "next" }],
+    "paths": {
+      "@/*": ["./*"],
+      "@recallpilot/core": ["../../packages/core/src/index.ts"],
+      "@recallpilot/core/*": ["../../packages/core/src/*"],
+      "@recallpilot/db": ["../../packages/db/src/index.ts"],
+      "@recallpilot/db/*": ["../../packages/db/src/*"],
+      "@recallpilot/integrations": ["../../packages/integrations/src/index.ts"],
+      "@recallpilot/integrations/*": ["../../packages/integrations/src/*"],
+      "@recallpilot/ui": ["../../packages/ui/src/index.ts"],
+      "@recallpilot/ui/*": ["../../packages/ui/src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}

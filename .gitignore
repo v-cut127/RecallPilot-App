@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+.npm/
+
+# Build output
+.next/
+out/
+dist/
+build/
+*.tsbuildinfo
+
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+.env.test
+!.env.example
+.secrets/
+
+# Local services and generated data
+.data/
+.storage/
+.outbox/
+coverage/
+playwright-report/
+test-results/
+blob-report/
+playwright/.cache/
+
+# Generated seed exports (regenerate with npm run seed:data)
+seed/*.csv
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log

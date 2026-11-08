@@ -1,0 +1,149 @@
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/geist-400.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/geist-500.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/geist-600.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-400.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-600.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-700.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #00061c;
+    --card: #f5f8fc;
+    --card-foreground: #00061c;
+    --popover: #ffffff;
+    --popover-foreground: #00061c;
+    --primary: #006ec3;
+    --primary-foreground: #ffffff;
+    --secondary: #ebf2f9;
+    --secondary-foreground: #00061c;
+    --muted: #f5f8fc;
+    --muted-foreground: #526078;
+    --accent: #006ec3;
+    --accent-foreground: #ffffff;
+    --accent-soft: #e6f2fb;
+    --destructive: #b42318;
+    --destructive-foreground: #ffffff;
+    --warning: #9a6700;
+    --warning-soft: #fff8e6;
+    --success: #067647;
+    --success-soft: #ecfdf3;
+    --border: #dce5ef;
+    --input: #dce5ef;
+    --ring: #006ec3;
+    --pill: #ebf2f9;
+    --ink: #00061c;
+    --muted-ink: #526078;
+    --radius: 10px;
+  }
+
+  .dark {
+    --background: #00061c;
+    --foreground: #e9eef8;
+    --card: #050e22;
+    --card-foreground: #e9eef8;
+    --popover: #071027;
+    --popover-foreground: #e9eef8;
+    --primary: #006ec3;
+    --primary-foreground: #ffffff;
+    --secondary: #0b1730;
+    --secondary-foreground: #dbe4f3;
+    --muted: #050e22;
+    --muted-foreground: #8493ad;
+    --accent: #53d2e5;
+    --accent-foreground: #00061c;
+    --accent-soft: rgba(83, 210, 229, 0.09);
+    --destructive: #f2777a;
+    --destructive-foreground: #00061c;
+    --warning: #e3b341;
+    --warning-soft: rgba(227, 179, 65, 0.1);
+    --success: #4cc38a;
+    --success-soft: rgba(76, 195, 138, 0.1);
+    --border: #17223a;
+    --input: #1b2740;
+    --ring: #2f8fe0;
+    --pill: #0d1932;
+    --ink: #f2f6ff;
+    --muted-ink: #8493ad;
+    --surface-0: #00061c;
+    --surface-1: #030b1e;
+    --surface-2: #061027;
+    --surface-3: #0a1730;
+    --line: rgba(255, 255, 255, 0.07);
+    --line-strong: rgba(255, 255, 255, 0.12);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+    font-feature-settings: "cv03" on, "cv04" on, "cv11" on;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading tracking-[-0.035em] text-ink;
+  }
+
+  ::selection {
+    background: var(--accent-soft);
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}

@@ -1,0 +1,2905 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RecallPilot — Product Plan</title>
+    <style>
+      @font-face {
+        font-family: 'Geist';
+        src: url('../public/fonts/geist-400.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Geist';
+        src: url('../public/fonts/geist-500.woff2') format('woff2');
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Geist';
+        src: url('../public/fonts/geist-600.woff2') format('woff2');
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Inter';
+        src: url('../public/fonts/inter-400.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Inter';
+        src: url('../public/fonts/inter-600.woff2') format('woff2');
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Inter';
+        src: url('../public/fonts/inter-700.woff2') format('woff2');
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      :root {
+        --bg: #ffffff;
+        --card: #f5f8fc;
+        --pill: #ebf2f9;
+        --ink: #00061c;
+        --muted: #526078;
+        --border: #dce5ef;
+        --accent: #006ec3;
+        --dark-bg: #00061c;
+        --dark-card: #080f25;
+        --dark-pill: #0d172f;
+        --dark-border: #1c2941;
+        --dark-muted: #95a4bd;
+        --dark-accent: #53d2e5;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: var(--bg);
+        color: #26324a;
+        font-family: 'Inter', Arial, sans-serif;
+        font-size: 9.1pt;
+        line-height: 1.5;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        margin: 0;
+        color: var(--ink);
+        font-family: 'Geist', Arial, sans-serif;
+        font-weight: 500;
+        letter-spacing: -0.035em;
+      }
+
+      h3,
+      h4 {
+        break-after: avoid;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      ul,
+      ol {
+        margin: 0;
+        padding-left: 4.5mm;
+      }
+
+      li + li {
+        margin-top: 1.6mm;
+      }
+
+      strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      em {
+        color: var(--muted);
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      @page {
+        size: A4;
+        margin: 15mm 14mm 16mm;
+      }
+
+      .cover {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 210mm;
+        height: 296.8mm;
+        padding: 18mm;
+        overflow: hidden;
+        background:
+          radial-gradient(70% 55% at 88% 8%, rgba(0, 110, 195, 0.42) 0%, rgba(0, 6, 28, 0) 58%),
+          radial-gradient(60% 50% at 6% 96%, rgba(83, 210, 229, 0.16) 0%, rgba(0, 6, 28, 0) 60%),
+          var(--dark-bg);
+        color: #ffffff;
+        page-break-after: always;
+        break-after: page;
+      }
+
+      .cover::before {
+        position: absolute;
+        inset: 0;
+        content: '';
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+        background-size: 22mm 22mm;
+        -webkit-mask-image: radial-gradient(80% 70% at 50% 45%, #000 20%, transparent 85%);
+        mask-image: radial-gradient(80% 70% at 50% 45%, #000 20%, transparent 85%);
+        pointer-events: none;
+      }
+
+      .cover > * {
+        position: relative;
+      }
+
+      .cover-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+      }
+
+      .cover-logo {
+        display: block;
+        width: auto;
+        height: 34px;
+      }
+
+      .cover-tag {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 2mm;
+        color: rgba(255, 255, 255, 0.62);
+        font-family: 'Geist', Arial, sans-serif;
+        font-size: 7.5pt;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .cover-tag strong {
+        color: #ffffff;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        text-transform: none;
+      }
+
+      .cover-main {
+        max-width: 165mm;
+        margin-top: 16mm;
+      }
+
+      .cover-eyebrow {
+        margin-bottom: 7mm;
+        color: var(--dark-accent);
+        font-size: 7.6pt;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .cover-title {
+        color: #ffffff;
+        font-size: 44pt;
+        font-weight: 500;
+        line-height: 1.02;
+        letter-spacing: -0.055em;
+      }
+
+      .cover-title span {
+        color: rgba(255, 255, 255, 0.52);
+      }
+
+      .cover-sub {
+        max-width: 125mm;
+        margin-top: 9mm;
+        color: rgba(255, 255, 255, 0.66);
+        font-size: 11pt;
+        line-height: 1.55;
+      }
+
+      .cover-rule {
+        width: 38mm;
+        height: 1.6px;
+        margin-top: 13mm;
+        background: var(--dark-accent);
+      }
+
+      .cover-bottom {
+        display: flex;
+        gap: 15mm;
+        padding-top: 8mm;
+        border-top: 1px solid rgba(255, 255, 255, 0.14);
+      }
+
+      .cover-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2mm;
+        min-width: 30mm;
+      }
+
+      .cover-meta span {
+        color: rgba(255, 255, 255, 0.42);
+        font-size: 7pt;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .cover-meta strong {
+        color: #ffffff;
+        font-family: 'Geist', Arial, sans-serif;
+        font-size: 9.5pt;
+        font-weight: 400;
+        letter-spacing: -0.01em;
+      }
+
+      .page {
+        page-break-after: always;
+        break-after: page;
+      }
+
+      .page:last-of-type {
+        page-break-after: auto;
+        break-after: auto;
+      }
+
+      .page-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 4mm;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .page-head img {
+        width: auto;
+        height: 15px;
+      }
+
+      .page-head span {
+        color: var(--muted);
+        font-size: 7pt;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .section-head {
+        display: flex;
+        align-items: center;
+        gap: 3mm;
+        margin-top: 9mm;
+        margin-bottom: 3.5mm;
+      }
+
+      .section-num {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 9mm;
+        height: 6.2mm;
+        padding: 0 2mm;
+        background: var(--pill);
+        border-radius: 1.6mm;
+        color: var(--accent);
+        font-family: 'Geist', Arial, sans-serif;
+        font-size: 7.2pt;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+      }
+
+      .section-kicker {
+        color: var(--muted);
+        font-size: 7.2pt;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .section-head::after {
+        flex: 1;
+        height: 1px;
+        content: '';
+        background: var(--border);
+      }
+
+      .section-title {
+        max-width: 160mm;
+        font-size: 25pt;
+        line-height: 1.06;
+      }
+
+      .section-lead {
+        max-width: 150mm;
+        margin-top: 3.5mm;
+        color: var(--muted);
+        font-size: 10pt;
+        line-height: 1.55;
+      }
+
+      .mt-3 { margin-top: 2.5mm; }
+      .mt-4 { margin-top: 3mm; }
+      .mt-5 { margin-top: 4mm; }
+      .mt-6 { margin-top: 4.5mm; }
+      .mt-8 { margin-top: 6mm; }
+      .mt-10 { margin-top: 8mm; }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3.5mm;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3.5mm;
+      }
+
+      .grid-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2.8mm;
+      }
+
+      .card {
+        padding: 4mm;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 2.4mm;
+        break-inside: avoid;
+      }
+
+      .card--plain {
+        background: #ffffff;
+      }
+
+      .card-label {
+        margin-bottom: 2mm;
+        color: var(--accent);
+        font-size: 6.8pt;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .card-title {
+        margin-bottom: 1.6mm;
+        font-size: 12pt;
+        line-height: 1.25;
+        letter-spacing: -0.02em;
+      }
+
+      .card-copy {
+        color: var(--muted);
+        font-size: 8.4pt;
+        line-height: 1.55;
+      }
+
+      .stat {
+        padding: 4mm;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 2.4mm;
+      }
+
+      .stat-value {
+        color: var(--ink);
+        font-family: 'Geist', Arial, sans-serif;
+        font-size: 19pt;
+        font-weight: 500;
+        line-height: 1.1;
+        letter-spacing: -0.04em;
+      }
+
+      .stat-label {
+        margin-top: 1.4mm;
+        color: var(--muted);
+        font-size: 7.6pt;
+        line-height: 1.4;
+      }
+
+      .callout {
+        padding: 5mm 5.5mm;
+        background: var(--card);
+        border-left: 2.2mm solid var(--accent);
+        border-radius: 1.8mm;
+        break-inside: avoid;
+      }
+
+      .callout--dark {
+        background: var(--dark-bg);
+        border-left-color: var(--dark-accent);
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .callout--dark strong,
+      .callout--dark .callout-title {
+        color: #ffffff;
+      }
+
+      .callout-title {
+        margin-bottom: 1.4mm;
+        color: var(--ink);
+        font-family: 'Geist', Arial, sans-serif;
+        font-size: 9.5pt;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+      }
+
+      .callout p {
+        font-size: 8.4pt;
+        line-height: 1.55;
+      }
+
+      .callout--compact {
+        padding: 3.4mm 4mm;
+      }
+
+      .callout--compact .callout-title {
+        margin-bottom: 0.7mm;
+      }
+
+      .callout--compact p {
+        font-size: 7.8pt;
+        line-height: 1.45;
+      }
+
+      .quote {
+        padding: 6mm;
+        background: var(--dark-bg);
+        border-radius: 2.4mm;
+        color: rgba(255, 255, 255, 0.72);
+        font-family: 'Geist', Arial, sans-serif;
+        font-size: 13pt;
+        line-height: 1.4;
+        letter-spacing: -0.02em;
+        break-inside: avoid;
+      }
+
+      .quote strong {
+        color: #ffffff;
+        font-weight: 500;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 8pt;
+        line-height: 1.45;
+      }
+
+      thead {
+        display: table-header-group;
+      }
+
+      th {
+        padding: 2.2mm 2.5mm;
+        background: var(--card);
+        border: 1px solid var(--border);
+        color: var(--ink);
+        font-family: 'Geist', Arial, sans-serif;
+        font-size: 7.2pt;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        text-align: left;
+        vertical-align: bottom;
+      }
+
+      td {
+        padding: 2.1mm 2.5mm;
+        border: 1px solid var(--border);
+        vertical-align: top;
+      }
+
+      tbody tr:nth-child(even) td {
+        background: #fafcff;
+      }
+
+      tr {
+        break-inside: avoid;
+      }
+
+      td strong {
+        font-weight: 600;
+      }
+
+      .table--compact th,
+      .table--compact td {
+        padding: 1.9mm 2.6mm;
+      }
+
+      .table-title {
+        margin-bottom: 2.4mm;
+        color: var(--muted);
+        font-size: 7.2pt;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .bullets {
+        display: flex;
+        flex-direction: column;
+        gap: 2.2mm;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .bullets li {
+        position: relative;
+        margin: 0;
+        padding-left: 4.2mm;
+      }
+
+      .bullets li::before {
+        position: absolute;
+        top: 1.9mm;
+        left: 0;
+        width: 1.5mm;
+        height: 1.5mm;
+        background: var(--accent);
+        border-radius: 50%;
+        content: '';
+      }
+
+      .bullets--check li::before {
+        top: 0;
+        left: 0;
+        width: auto;
+        height: auto;
+        background: none;
+        border: 0;
+        border-radius: 0;
+        color: var(--accent);
+        content: '✓';
+        font-size: 8pt;
+        font-weight: 600;
+      }
+
+      .bullets--check li {
+        padding-left: 4.5mm;
+      }
+
+      .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 2.6mm;
+        counter-reset: step;
+      }
+
+      .step {
+        display: flex;
+        gap: 3.2mm;
+        break-inside: avoid;
+      }
+
+      .step-num {
+        display: inline-flex;
+        flex: none;
+        align-items: center;
+        justify-content: center;
+        width: 6.4mm;
+        height: 6.4mm;
+        background: var(--ink);
+        border-radius: 50%;
+        color: #ffffff;
+        font-family: 'Geist', Arial, sans-serif;
+        font-size: 7.4pt;
+        font-weight: 500;
+      }
+
+      .step-body {
+        flex: 1;
+      }
+
+      .step-title {
+        margin-bottom: 0.6mm;
+        color: var(--ink);
+        font-size: 9pt;
+        font-weight: 600;
+      }
+
+      .step-copy {
+        color: var(--muted);
+        font-size: 8.2pt;
+        line-height: 1.5;
+      }
+
+      .code {
+        padding: 4.5mm 5mm;
+        overflow: hidden;
+        background: var(--dark-bg);
+        border-radius: 2mm;
+        color: #c6d4e8;
+        font-family: Consolas, 'Courier New', monospace;
+        font-size: 7.2pt;
+        line-height: 1.55;
+        white-space: pre;
+        break-inside: avoid;
+      }
+
+      .code .dim {
+        color: #6d7f9c;
+      }
+
+      .code .hi {
+        color: #7fc8ff;
+      }
+
+      .tag {
+        display: inline-block;
+        margin: 0 1.2mm 1.2mm 0;
+        padding: 1mm 2.2mm;
+        background: var(--pill);
+        border-radius: 1.2mm;
+        color: var(--accent);
+        font-size: 6.9pt;
+        font-weight: 500;
+        line-height: 1.35;
+        white-space: nowrap;
+      }
+
+      .tag--dark {
+        background: var(--dark-pill);
+        color: var(--dark-accent);
+      }
+
+      .divider {
+        height: 1px;
+        margin: 6mm 0;
+        background: var(--border);
+      }
+
+      .toc {
+        margin-top: 10mm;
+      }
+
+      .toc-row {
+        display: grid;
+        grid-template-columns: 12mm 1fr 42mm;
+        gap: 4mm;
+        align-items: baseline;
+        padding: 3.2mm 0;
+        border-top: 1px solid var(--border);
+      }
+
+      .toc-row:last-child {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .toc-num {
+        color: var(--accent);
+        font-family: 'Geist', Arial, sans-serif;
+        font-size: 8pt;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+      }
+
+      .toc-title {
+        color: var(--ink);
+        font-family: 'Geist', Arial, sans-serif;
+        font-size: 11pt;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+      }
+
+      .toc-desc {
+        color: var(--muted);
+        font-size: 7.7pt;
+        text-align: right;
+      }
+
+      .doc-control {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 3mm;
+        margin-top: 8mm;
+      }
+
+      .doc-cell {
+        padding: 3.4mm;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 1.8mm;
+      }
+
+      .doc-cell span {
+        display: block;
+        margin-bottom: 1mm;
+        color: var(--muted);
+        font-size: 6.6pt;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .doc-cell strong {
+        font-family: 'Geist', Arial, sans-serif;
+        font-size: 8.6pt;
+        font-weight: 500;
+      }
+
+      .milestone {
+        display: grid;
+        grid-template-columns: 18mm 1fr 40mm;
+        gap: 4mm;
+        padding: 3mm 0;
+        border-top: 1px solid var(--border);
+        break-inside: avoid;
+      }
+
+      .milestone:last-child {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .milestone-id {
+        color: var(--accent);
+        font-family: 'Geist', Arial, sans-serif;
+        font-size: 8pt;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+      }
+
+      .milestone-title {
+        color: var(--ink);
+        font-size: 9pt;
+        font-weight: 600;
+      }
+
+      .milestone-copy {
+        margin-top: 0.8mm;
+        color: var(--muted);
+        font-size: 7.9pt;
+        line-height: 1.5;
+      }
+
+      .milestone-weeks {
+        color: var(--muted);
+        font-size: 7.6pt;
+        text-align: right;
+      }
+
+      .swatches {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 3mm;
+      }
+
+      .swatch {
+        overflow: hidden;
+        border: 1px solid var(--border);
+        border-radius: 2mm;
+        break-inside: avoid;
+      }
+
+      .swatch-color {
+        height: 16mm;
+      }
+
+      .swatch-meta {
+        padding: 2.4mm 2.6mm;
+        background: #ffffff;
+      }
+
+      .swatch-name {
+        color: var(--ink);
+        font-size: 7.6pt;
+        font-weight: 600;
+      }
+
+      .swatch-hex {
+        margin-top: 0.4mm;
+        color: var(--muted);
+        font-family: Consolas, 'Courier New', monospace;
+        font-size: 7pt;
+        letter-spacing: 0.02em;
+      }
+
+      .swatch-use {
+        margin-top: 1mm;
+        color: var(--muted);
+        font-size: 6.6pt;
+        line-height: 1.35;
+      }
+
+      .dark-panel {
+        padding: 5mm;
+        background: var(--dark-bg);
+        border-radius: 2.4mm;
+      }
+
+      .dark-panel .swatch {
+        border-color: var(--dark-border);
+      }
+
+      .dark-panel .swatch-meta {
+        background: var(--dark-card);
+      }
+
+      .dark-panel .swatch-name {
+        color: #ffffff;
+      }
+
+      .dark-panel .swatch-hex {
+        color: var(--dark-muted);
+      }
+
+      .dark-panel .swatch-use {
+        color: #6d7f9c;
+      }
+
+      .logo-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 30mm;
+        border: 1px solid var(--border);
+        border-radius: 2mm;
+      }
+
+      .logo-box--light {
+        background: #ffffff;
+      }
+
+      .logo-box--dark {
+        background: var(--dark-bg);
+        border-color: var(--dark-border);
+      }
+
+      .logo-box img {
+        width: auto;
+        height: 12mm;
+      }
+
+      .type-specimen {
+        padding: 5mm;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 2.4mm;
+      }
+
+      .type-name {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 2mm;
+      }
+
+      .type-name strong {
+        font-family: 'Geist', Arial, sans-serif;
+        font-size: 12pt;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+      }
+
+      .type-name span {
+        color: var(--muted);
+        font-size: 7pt;
+      }
+
+      .type-display {
+        color: var(--ink);
+        font-family: 'Geist', Arial, sans-serif;
+        font-size: 18pt;
+        font-weight: 500;
+        line-height: 1.15;
+        letter-spacing: -0.04em;
+      }
+
+      .type-body {
+        margin-top: 2mm;
+        color: var(--muted);
+        font-size: 8.2pt;
+        line-height: 1.55;
+      }
+
+      .weight-row {
+        display: flex;
+        gap: 4mm;
+        margin-top: 3mm;
+      }
+
+      .weight {
+        flex: 1;
+        padding-top: 2mm;
+        border-top: 1px solid var(--border);
+        color: var(--ink);
+        font-family: 'Geist', Arial, sans-serif;
+        font-size: 10pt;
+      }
+
+      .weight span {
+        display: block;
+        margin-top: 1mm;
+        color: var(--muted);
+        font-family: 'Inter', Arial, sans-serif;
+        font-size: 6.6pt;
+      }
+
+      .component-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2.6mm;
+        align-items: center;
+        padding: 4mm;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 2mm;
+      }
+
+      .button-sample {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 8mm;
+        padding: 0 4.5mm;
+        background: var(--ink);
+        border-radius: 1.6mm;
+        color: #ffffff;
+        font-family: 'Geist', Arial, sans-serif;
+        font-size: 7.6pt;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+      }
+
+      .pill-sample {
+        display: inline-flex;
+        align-items: center;
+        height: 5.6mm;
+        padding: 0 2.6mm;
+        background: var(--pill);
+        border-radius: 1.3mm;
+        color: var(--accent);
+        font-size: 7pt;
+      }
+
+      .surface-sample {
+        display: flex;
+        flex-direction: column;
+        gap: 1mm;
+        justify-content: center;
+        width: 42mm;
+        height: 16mm;
+        padding: 0 3mm;
+        background: #ffffff;
+        border: 1px solid var(--border);
+        border-radius: 2mm;
+      }
+
+      .surface-sample span {
+        color: var(--muted);
+        font-size: 6.4pt;
+      }
+
+      .surface-sample strong {
+        font-size: 7.4pt;
+        font-weight: 500;
+      }
+
+      .dark-preview {
+        padding: 5mm;
+        background:
+          radial-gradient(70% 90% at 90% 0%, rgba(0, 110, 195, 0.28) 0%, rgba(0, 6, 28, 0) 60%),
+          var(--dark-bg);
+        border-radius: 2.4mm;
+        break-inside: avoid;
+      }
+
+      .dark-preview-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 4mm;
+      }
+
+      .dark-preview-title {
+        color: #ffffff;
+        font-family: 'Geist', Arial, sans-serif;
+        font-size: 11pt;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+      }
+
+      .dark-preview-title span {
+        display: block;
+        margin-top: 0.8mm;
+        color: var(--dark-muted);
+        font-family: 'Inter', Arial, sans-serif;
+        font-size: 7pt;
+        font-weight: 400;
+        letter-spacing: 0;
+      }
+
+      .dark-preview-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3mm;
+      }
+
+      .dark-stat {
+        padding: 3.6mm;
+        background: var(--dark-card);
+        border: 1px solid var(--dark-border);
+        border-radius: 2mm;
+      }
+
+      .dark-stat-label {
+        color: var(--dark-muted);
+        font-size: 6.8pt;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .dark-stat-value {
+        margin-top: 1.2mm;
+        color: #ffffff;
+        font-family: 'Geist', Arial, sans-serif;
+        font-size: 16pt;
+        font-weight: 500;
+        line-height: 1.1;
+        letter-spacing: -0.04em;
+      }
+
+      .dark-stat-delta {
+        margin-top: 1mm;
+        color: var(--dark-accent);
+        font-size: 6.8pt;
+      }
+
+      .dark-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 3mm;
+        margin-top: 3mm;
+        padding: 3mm 3.6mm;
+        background: var(--dark-card);
+        border: 1px solid var(--dark-border);
+        border-radius: 1.8mm;
+      }
+
+      .dark-row p {
+        color: #ffffff;
+        font-size: 7.6pt;
+      }
+
+      .dark-row span {
+        color: var(--dark-muted);
+        font-size: 6.8pt;
+      }
+
+      .dark-preview-head .dark-tag,
+      .dark-row .dark-tag {
+        padding: 1mm 2.2mm;
+        background: var(--dark-pill);
+        border-radius: 1.2mm;
+        color: var(--dark-accent);
+        font-size: 6.6pt;
+      }
+
+      .light-preview {
+        padding: 5mm;
+        background: #ffffff;
+        border: 1px solid var(--border);
+        border-radius: 2.4mm;
+        break-inside: avoid;
+      }
+
+      .light-preview-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 4mm;
+      }
+
+      .light-preview-title {
+        color: var(--ink);
+        font-family: 'Geist', Arial, sans-serif;
+        font-size: 11pt;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+      }
+
+      .light-preview-title span {
+        display: block;
+        margin-top: 0.8mm;
+        color: var(--muted);
+        font-family: 'Inter', Arial, sans-serif;
+        font-size: 7pt;
+        font-weight: 400;
+        letter-spacing: 0;
+      }
+
+      .light-preview-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3mm;
+      }
+
+      .light-stat {
+        padding: 3.6mm;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 2mm;
+      }
+
+      .light-stat-label {
+        color: var(--muted);
+        font-size: 6.8pt;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .light-stat-value {
+        margin-top: 1.2mm;
+        color: var(--ink);
+        font-family: 'Geist', Arial, sans-serif;
+        font-size: 16pt;
+        font-weight: 500;
+        line-height: 1.1;
+        letter-spacing: -0.04em;
+      }
+
+      .light-stat-delta {
+        margin-top: 1mm;
+        color: var(--accent);
+        font-size: 6.8pt;
+      }
+
+      .light-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 3mm;
+        margin-top: 3mm;
+        padding: 3mm 3.6mm;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 1.8mm;
+      }
+
+      .light-row p {
+        color: var(--ink);
+        font-size: 7.6pt;
+      }
+
+      .light-row span {
+        color: var(--muted);
+        font-size: 6.8pt;
+      }
+
+      .light-preview-head .light-tag,
+      .light-row .light-tag {
+        padding: 1mm 2.2mm;
+        background: var(--pill);
+        border-radius: 1.2mm;
+        color: var(--accent);
+        font-size: 6.6pt;
+      }
+
+      .back-cover {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        width: 210mm;
+        height: 296.8mm;
+        margin: -17mm -15mm -18mm;
+        padding: 18mm;
+        background:
+          radial-gradient(60% 45% at 90% 90%, rgba(0, 110, 195, 0.3) 0%, rgba(0, 6, 28, 0) 60%),
+          var(--dark-bg);
+        color: rgba(255, 255, 255, 0.55);
+        break-before: page;
+        page-break-before: always;
+      }
+
+      .back-cover img {
+        width: auto;
+        height: 30px;
+      }
+
+      .back-cover h2 {
+        max-width: 140mm;
+        color: #ffffff;
+        font-size: 26pt;
+        line-height: 1.1;
+      }
+
+      .back-cover p {
+        max-width: 110mm;
+        margin-top: 4mm;
+        font-size: 9pt;
+        line-height: 1.6;
+      }
+
+      .back-cover .fineprint {
+        color: rgba(255, 255, 255, 0.32);
+        font-size: 7pt;
+        letter-spacing: 0.04em;
+      }
+
+      .note {
+        color: var(--muted);
+        font-size: 7.4pt;
+        line-height: 1.5;
+      }
+
+      .two-col-list {
+        columns: 2;
+        column-gap: 8mm;
+      }
+
+      .two-col-list li {
+        break-inside: avoid;
+      }
+
+      .keep {
+        break-inside: avoid;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ================= CONTENTS ================= -->
+    <section class="page">
+      <div class="page-head">
+        <img src="../public/assets/logo-black.png" alt="RecallPilot" />
+        <span>Product plan · Contents</span>
+      </div>
+
+      <div class="section-head">
+        <span class="section-num">00</span>
+        <span class="section-kicker">Contents</span>
+      </div>
+      <h1 class="section-title">Everything needed to build the product.</h1>
+      <p class="section-lead">
+        This document consolidates the business case, product scope, technical architecture,
+        delivery plan and brand system for RecallPilot. It is written to be the working plan for
+        the first 12 weeks of product development.
+      </p>
+
+      <div class="toc">
+        <div class="toc-row">
+          <span class="toc-num">01</span>
+          <span class="toc-title">Executive summary</span>
+          <span class="toc-desc">Wedge, decisions, success criteria</span>
+        </div>
+        <div class="toc-row">
+          <span class="toc-num">02</span>
+          <span class="toc-title">Business context</span>
+          <span class="toc-desc">Product layers, journey, boundaries</span>
+        </div>
+        <div class="toc-row">
+          <span class="toc-num">03</span>
+          <span class="toc-title">Pricing and business model</span>
+          <span class="toc-desc">Plans, economics, risks, validation</span>
+        </div>
+        <div class="toc-row">
+          <span class="toc-num">04</span>
+          <span class="toc-title">Product plan</span>
+          <span class="toc-desc">MVP scope, workflows, architecture, data</span>
+        </div>
+        <div class="toc-row">
+          <span class="toc-num">05</span>
+          <span class="toc-title">Delivery plan</span>
+          <span class="toc-desc">Roadmap, R0–R1, acceptance criteria</span>
+        </div>
+        <div class="toc-row">
+          <span class="toc-num">06</span>
+          <span class="toc-title">Brand system</span>
+          <span class="toc-desc">Logos, colors, typography, UI tokens</span>
+        </div>
+      </div>
+
+      <div class="doc-control">
+        <div class="doc-cell">
+          <span>Document</span>
+          <strong>Product plan</strong>
+        </div>
+        <div class="doc-cell">
+          <span>Version</span>
+          <strong>1.0</strong>
+        </div>
+        <div class="doc-cell">
+          <span>Date</span>
+          <strong>8 Nov 2026</strong>
+        </div>
+        <div class="doc-cell">
+          <span>Classification</span>
+          <strong>Confidential</strong>
+        </div>
+      </div>
+
+      <div class="callout mt-8">
+        <p class="callout-title">Locked decisions</p>
+        <p>
+          The product is built in a new, private repository: <strong>v-cut127/RecallPilot-App</strong>.
+          The current repository remains the landing page. The first release is a
+          <strong>free recall audit plus CSV import</strong>. The stack is
+          <strong>Next.js 15 + Supabase EU + pg-boss</strong>, using synthetic data until a real
+          clinic export is available. The UI and report are English-first; the data model is
+          prepared for German and Dutch.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= 01 EXECUTIVE SUMMARY ================= -->
+    <section class="page">
+      <div class="page-head">
+        <img src="../public/assets/logo-black.png" alt="RecallPilot" />
+        <span>01 · Executive summary</span>
+      </div>
+
+      <div class="section-head">
+        <span class="section-num">01</span>
+        <span class="section-kicker">Executive summary</span>
+      </div>
+      <h1 class="section-title">The wedge is a number, not a feature list.</h1>
+      <p class="section-lead">
+        RecallPilot is an AI recall and revenue-recovery agent for dental practices in Europe.
+        The product does not sell “AI for dentists.” It sells a monthly outcome:
+        <strong>“We recovered 27 appointments and €8,430 of production you would otherwise have lost.”</strong>
+      </p>
+
+      <div class="quote mt-6">
+        Build the smallest closed loop that produces that number:
+        <strong>CSV import → free recall audit → email pilot → booking → recovered-revenue report.</strong>
+      </div>
+
+      <div class="grid-3 mt-6">
+        <div class="stat">
+          <div class="stat-value">€199–599</div>
+          <div class="stat-label">Monthly plans, priced against recovered production rather than software seats.</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">10–12 wks</div>
+          <div class="stat-label">Pilot-ready MVP with one full-time developer and disciplined scope.</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">10 pilots</div>
+          <div class="stat-label">Validation target before investing in deep PMS integrations, voice or WhatsApp.</div>
+        </div>
+      </div>
+
+      <h3 class="mt-8" style="font-size: 13pt">Why this can win</h3>
+      <div class="grid-2 mt-3">
+        <div class="card">
+          <p class="card-label">Outcome, not tooling</p>
+          <h4 class="card-title">A report the practice owner forwards.</h4>
+          <p class="card-copy">
+            Every feature exists to produce a credible recovered-revenue number. The audit is the
+            lead magnet; the monthly report is the retention mechanism.
+          </p>
+        </div>
+        <div class="card">
+          <p class="card-label">Narrow first release</p>
+          <h4 class="card-title">Email-first, CSV-first, human-approved.</h4>
+          <p class="card-copy">
+            No deep PMS write-back, no WhatsApp, no voice in v0.1. The first release proves demand
+            and lift with the lowest technical and compliance risk.
+          </p>
+        </div>
+        <div class="card">
+          <p class="card-label">Trust by design</p>
+          <h4 class="card-title">Holdout group from day one.</h4>
+          <p class="card-copy">
+            Attribution is the product. A control group prevents the company from overclaiming and
+            gives the practice a reason to believe the report.
+          </p>
+        </div>
+        <div class="card">
+          <p class="card-label">Safety as a sales asset</p>
+          <h4 class="card-title">Clinical questions always escalate.</h4>
+          <p class="card-copy">
+            RecallPilot never diagnoses, promises insurance coverage or gives clinical advice.
+            That boundary is enforced in the agent and explained to every practice.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 02 BUSINESS CONTEXT ================= -->
+    <section class="page">
+      <div class="page-head">
+        <img src="../public/assets/logo-black.png" alt="RecallPilot" />
+        <span>02 · Business context</span>
+      </div>
+
+      <div class="section-head">
+        <span class="section-num">02</span>
+        <span class="section-kicker">Business context</span>
+      </div>
+      <h1 class="section-title">A three-layer product with a hard boundary.</h1>
+      <p class="section-lead">
+        RecallPilot connects to the practice-management system, decides who to contact and why,
+        and reports the appointments and production recovered. Each layer is necessary, but the
+        outcome layer is the wedge.
+      </p>
+
+      <div class="grid-3 mt-6">
+        <div class="card">
+          <p class="card-label">Layer 1</p>
+          <h4 class="card-title">Data</h4>
+          <p class="card-copy">
+            Read/write connection to the PMS: patients, appointments, recall intervals, treatment
+            plans, contact consent. Writes back bookings and conversation outcomes.
+          </p>
+          <div class="mt-3">
+            <span class="tag">CSV first</span><span class="tag">Open Dental later</span>
+          </div>
+        </div>
+        <div class="card">
+          <p class="card-label">Layer 2</p>
+          <h4 class="card-title">Agent</h4>
+          <p class="card-copy">
+            A rules engine plus LLM decides who to contact, when, on which channel, in which
+            language, with which message. Handles replies, objections and escalation.
+          </p>
+          <div class="mt-3">
+            <span class="tag">Rules engine</span><span class="tag">Human approval</span>
+          </div>
+        </div>
+        <div class="card">
+          <p class="card-label">Layer 3</p>
+          <h4 class="card-title">Outcome</h4>
+          <p class="card-copy">
+            A dashboard and monthly report attributing booked appointments and recovered
+            production to the agent, with a control group so the practice can trust the number.
+          </p>
+          <div class="mt-3">
+            <span class="tag">Holdout</span><span class="tag">Monthly report</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout mt-6">
+        <p class="callout-title">Product boundary</p>
+        <p>
+          RecallPilot is <strong>not</strong> a clinical decision-support tool and <strong>not</strong>
+          a full practice-management system. It must never diagnose, promise insurance coverage or
+          give clinical advice. Every ambiguous clinical message is escalated to the practice. This
+          boundary is both a safety requirement and a sales asset.
+        </p>
+      </div>
+
+      <h3 class="mt-8" style="font-size: 13pt">Pilot guardrails</h3>
+      <div class="grid-4 mt-3">
+        <div class="card">
+          <p class="card-label">Cohort</p>
+          <h4 class="card-title" style="font-size: 11pt">100–200 low-risk patients</h4>
+          <p class="card-copy">Exclude vulnerable patients, open complaints and anyone with ambiguous consent.</p>
+        </div>
+        <div class="card">
+          <p class="card-label">Measurement</p>
+          <h4 class="card-title" style="font-size: 11pt">90/10 holdout</h4>
+          <p class="card-copy">A control group from the first send so lift is measured, not assumed.</p>
+        </div>
+        <div class="card">
+          <p class="card-label">Control</p>
+          <h4 class="card-title" style="font-size: 11pt">Human approval</h4>
+          <p class="card-copy">Every message is reviewed during the pilot. Auto-send is earned later.</p>
+        </div>
+        <div class="card">
+          <p class="card-label">Cadence</p>
+          <h4 class="card-title" style="font-size: 11pt">Weekly review</h4>
+          <p class="card-copy">Response, bookings, front-desk load and every objection are reviewed weekly.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 02b RECALL JOURNEY ================= -->
+    <section class="page">
+      <div class="page-head">
+        <img src="../public/assets/logo-black.png" alt="RecallPilot" />
+        <span>02 · Recall journey</span>
+      </div>
+
+      <div class="section-head">
+        <span class="section-num">02</span>
+        <span class="section-kicker">Recall journey</span>
+      </div>
+      <h1 class="section-title">From overdue list to booked appointment.</h1>
+
+      <h3 class="mt-6" style="font-size: 13pt">The customer journey</h3>
+      <table class="mt-3">
+        <thead>
+          <tr>
+            <th style="width: 8%">Step</th>
+            <th style="width: 24%">Action</th>
+            <th>Detail</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1</strong></td>
+            <td><strong>Connect the PMS</strong></td>
+            <td>OAuth/API if available; otherwise secure CSV upload or read-only export. Validate patient counts, appointment history, recall intervals and consent fields.</td>
+          </tr>
+          <tr>
+            <td><strong>2</strong></td>
+            <td><strong>Run the free recall audit</strong></td>
+            <td>Within 24 hours: how many patients are overdue, estimated annual production at risk, and sample messages in the practice’s language.</td>
+          </tr>
+          <tr>
+            <td><strong>3</strong></td>
+            <td><strong>Configure the agent</strong></td>
+            <td>Recall rules, languages, channels, quiet hours, providers and escalation contacts. Approve scripts and the “do not say” list.</td>
+          </tr>
+          <tr>
+            <td><strong>4</strong></td>
+            <td><strong>Pilot for 30 days</strong></td>
+            <td>Start with 100–200 low-risk patients. Measure response, bookings and front-desk time. The practice can pause the agent at any time.</td>
+          </tr>
+          <tr>
+            <td><strong>5</strong></td>
+            <td><strong>Review the outcome</strong></td>
+            <td>Weekly check-in and monthly recovered-revenue report. If the agreed threshold is not met, the practice does not continue or pays a reduced fee.</td>
+          </tr>
+          <tr>
+            <td><strong>6</strong></td>
+            <td><strong>Expand</strong></td>
+            <td>Add treatment follow-up, more locations, voice and review requests. Move to annual billing with a discount.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="mt-8" style="font-size: 13pt">What the AI automates vs. what requires a human</h3>
+      <div class="grid-2 mt-3">
+        <div class="card card--plain">
+          <p class="card-label">AI automates</p>
+          <ul class="bullets">
+            <li>Segmentation of overdue patients and recall rules.</li>
+            <li>Message personalization, translation and send-time optimization.</li>
+            <li>Reply classification, objection handling and booking into open slots.</li>
+            <li>Rescheduling, confirmation and no-show follow-up.</li>
+            <li>Reporting and attribution of recovered appointments.</li>
+            <li>Opt-out handling and suppression lists.</li>
+          </ul>
+        </div>
+        <div class="card card--plain">
+          <p class="card-label">Human intervention required</p>
+          <ul class="bullets">
+            <li>Clinical questions (“Is this bleeding normal?”) and any medical advice.</li>
+            <li>Insurance/benefit exceptions and payment disputes.</li>
+            <li>Complaints, vulnerable patients and ambiguous requests.</li>
+            <li>Final approval of scripts, escalation policies and consent rules.</li>
+            <li>Manual audit of a sample of conversations for quality.</li>
+            <li>Legal/DPO review of the data-processing agreement and DPIA.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout callout--compact mt-5">
+        <p class="callout-title">Market sequencing</p>
+        <p>
+          Start with Germany and the Netherlands, the two markets named in the validation plan.
+          Ship the product UI and report in English first, with the data model, templates and
+          locale columns ready for German and Dutch. Add local-language QA before sending in those
+          markets.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= 03 PRICING ================= -->
+    <section class="page">
+      <div class="page-head">
+        <img src="../public/assets/logo-black.png" alt="RecallPilot" />
+        <span>03 · Pricing and business model</span>
+      </div>
+
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <span class="section-kicker">Pricing and business model</span>
+      </div>
+      <h1 class="section-title">Price against recovered production.</h1>
+      <p class="section-lead">
+        A recovered hygiene appointment is worth €100–250 immediately and €300–800 per year in
+        recurring production. At €349/month, the practice needs roughly 2–4 recovered appointments
+        to break even — a very easy sales conversation.
+      </p>
+
+      <table class="mt-6">
+        <thead>
+          <tr>
+            <th style="width: 11%">Tier</th>
+            <th style="width: 10%">Monthly</th>
+            <th>Features and limits</th>
+            <th style="width: 17%">Target customer</th>
+            <th style="width: 11%">AI/API cost</th>
+            <th style="width: 10%">Gross margin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Starter</strong></td>
+            <td><strong>€199</strong></td>
+            <td>1 location; 500 patients contacted/month; SMS + email; 1 language; recall dashboard; monthly report; email support.</td>
+            <td>Solo practice or first-time user; 1,000–2,500 active patients.</td>
+            <td>€25–45</td>
+            <td>77–87%</td>
+          </tr>
+          <tr>
+            <td><strong>Growth</strong></td>
+            <td><strong>€349</strong></td>
+            <td>2,000 patients/month; WhatsApp; 2 languages; treatment follow-up; voice add-on (€99 for 300 min); priority support.</td>
+            <td>1–3 location practice with an active recall problem.</td>
+            <td>€60–110</td>
+            <td>68–83%</td>
+          </tr>
+          <tr>
+            <td><strong>Scale</strong></td>
+            <td><strong>€599</strong></td>
+            <td>3 locations; 6,000 patients/month; unlimited languages; 300 voice minutes included; API; dedicated onboarding; quarterly business review.</td>
+            <td>Multi-location group or dental service organisation.</td>
+            <td>€120–220</td>
+            <td>63–80%</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note mt-2">
+        Cost assumptions: email near-zero; SMS €0.04–0.08 per message; WhatsApp €0.03–0.08 per
+        conversation; LLM €0.01–0.05 per conversation; voice €0.10–0.25 per minute; infrastructure
+        €5–30 per account. An SMS-heavy mix can reduce gross margin by 10–20 points, so plans must
+        include message credits or overage pricing.
+      </p>
+
+      <div class="callout mt-5">
+        <p class="callout-title">Pricing logic</p>
+        <p>
+          Price against the value of a recovered appointment, not against other software. Use a
+          30-day pilot with a clear success threshold. After attribution is trusted, introduce a
+          performance fee: €12 per recovered appointment after the first 10, capped at €299/month.
+        </p>
+      </div>
+
+      <h3 class="mt-8" style="font-size: 13pt">Add-ons and expansion revenue</h3>
+      <table class="mt-3 table--compact">
+        <thead>
+          <tr>
+            <th style="width: 24%">Add-on</th>
+            <th style="width: 16%">Price</th>
+            <th>What it includes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Voice</strong></td><td>€99/month</td><td>300 minutes. Higher margin than SMS; useful for older patient demographics.</td></tr>
+          <tr><td><strong>Treatment follow-up</strong></td><td>+€99/month</td><td>Higher value because unscheduled treatment is worth more than hygiene.</td></tr>
+          <tr><td><strong>Review requests</strong></td><td>+€49/month</td><td>Sends a review request after a completed appointment.</td></tr>
+          <tr><td><strong>Performance fee</strong></td><td>€12/appointment</td><td>After the first 10 recovered appointments, capped at €299/month.</td></tr>
+          <tr><td><strong>Setup</strong></td><td>€299 one-time</td><td>Waived on annual billing. Covers CSV cleanup, script approval and staff training.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ================= 03b ECONOMICS ================= -->
+    <section class="page">
+      <div class="page-head">
+        <img src="../public/assets/logo-black.png" alt="RecallPilot" />
+        <span>03 · Unit economics</span>
+      </div>
+
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <span class="section-kicker">Unit economics</span>
+      </div>
+      <h1 class="section-title">Churn is the variable to watch.</h1>
+
+      <h3 class="mt-6" style="font-size: 13pt">Revenue scenarios</h3>
+      <table class="mt-3 table--compact">
+        <thead>
+          <tr>
+            <th>Customers</th>
+            <th>Average monthly price</th>
+            <th>MRR</th>
+            <th>ARR</th>
+            <th>Comment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>10</td><td>€199</td><td>€1,990</td><td>€23,880</td><td>Design partners; founder-led sales; pre-scale.</td></tr>
+          <tr><td>50</td><td>€299</td><td>€14,950</td><td>€179,400</td><td>First repeatable outbound motion; one CS hire.</td></tr>
+          <tr><td>100</td><td>€349</td><td>€34,900</td><td>€418,800</td><td>Not profitable with a 4-person team; need ~160–200 customers.</td></tr>
+          <tr><td>250</td><td>€349</td><td>€87,250</td><td>€1,047,000</td><td>Profitable with a lean team; partner channel matters.</td></tr>
+          <tr><td>500</td><td>€349</td><td>€174,500</td><td>€2,094,000</td><td>Requires sales capacity, onboarding and a second product line.</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="mt-8" style="font-size: 13pt">Unit economics</h3>
+      <div class="grid-2 mt-3">
+        <table>
+          <tbody>
+            <tr><td><strong>Blended CAC</strong></td><td>€600</td></tr>
+            <tr><td><strong>ARPU</strong></td><td>€299</td></tr>
+            <tr><td><strong>Gross margin</strong></td><td>75%</td></tr>
+            <tr><td><strong>Monthly churn</strong></td><td>3.5%</td></tr>
+            <tr><td><strong>LTV (3.5% churn)</strong></td><td>€6,407</td></tr>
+            <tr><td><strong>LTV / CAC</strong></td><td>10.7×</td></tr>
+            <tr><td><strong>CAC payback</strong></td><td>2.7 months</td></tr>
+            <tr><td><strong>LTV at 5% churn</strong></td><td>€4,485</td></tr>
+          </tbody>
+        </table>
+        <div class="card">
+          <p class="card-label">The variable to watch</p>
+          <h4 class="card-title">Protect the first 90 days.</h4>
+          <p class="card-copy">
+            LTV remains attractive at 5% churn, but the first 90 days are fragile. The product
+            must deliver visible recovered revenue quickly, or the practice will read the tool as
+            another inbox and cancel.
+          </p>
+          <p class="card-copy mt-3">
+            Keep the team lean, raise ARPU through treatment follow-up and multi-location plans, or
+            reach 200+ customers before hiring aggressively.
+          </p>
+        </div>
+      </div>
+
+      <div class="callout callout--compact mt-5">
+        <p class="callout-title">Margin guardrails</p>
+        <p>
+          Email is near-zero; SMS costs are controlled with credits; WhatsApp template fees are
+          reviewed monthly; voice is an add-on, not a default. Re-price if the channel mix shifts
+          toward SMS or voice.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= 03c CHURN ================= -->
+    <section class="page">
+      <div class="page-head">
+        <img src="../public/assets/logo-black.png" alt="RecallPilot" />
+        <span>03 · Churn risks</span>
+      </div>
+
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <span class="section-kicker">Churn risks</span>
+      </div>
+      <h1 class="section-title">Retention is the growth strategy.</h1>
+      <p class="section-lead">
+        A low-ACV SaaS is not profitable at 100 customers with a full team. Retention depends on
+        visible recovered revenue within the first 90 days and a front desk that does not feel
+        replaced.
+      </p>
+
+      <h3 class="mt-6" style="font-size: 13pt">Churn risks and mitigations</h3>
+      <table class="mt-3 table--compact">
+        <thead>
+          <tr>
+            <th style="width: 26%">Risk</th>
+            <th>Why it happens</th>
+            <th style="width: 35%">Mitigation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Practice does not see recovered revenue</strong></td>
+            <td>Attribution is weak or patient response rate is low.</td>
+            <td>Control group, booking-source tracking, weekly reports, 30-day pilot with a clear success threshold.</td>
+          </tr>
+          <tr>
+            <td><strong>Front desk rejects the tool</strong></td>
+            <td>Fear of losing control or extra work.</td>
+            <td>Human-in-the-loop inbox, staff training, “assistant not replacement” positioning, quick wins in week one.</td>
+          </tr>
+          <tr>
+            <td><strong>PMS integration breaks</strong></td>
+            <td>API changes, export errors, vendor restrictions.</td>
+            <td>Monitoring, CSV fallback, integration status page, partner agreements, error alerts.</td>
+          </tr>
+          <tr>
+            <td><strong>Patient complaints or opt-outs</strong></td>
+            <td>Too many messages, wrong tone, language errors.</td>
+            <td>Frequency caps, quiet hours, easy opt-out, human review of scripts, local-language QA.</td>
+          </tr>
+          <tr>
+            <td><strong>Practice closure or merger</strong></td>
+            <td>Market consolidation.</td>
+            <td>Multi-location plans, diversify across countries, expand to veterinary/allied health.</td>
+          </tr>
+          <tr>
+            <td><strong>PMS vendor bundles recall</strong></td>
+            <td>Incumbent adds AI features.</td>
+            <td>Stay ahead on outcome reporting, multilingual depth and integrations; partner rather than compete where possible.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="mt-8" style="font-size: 13pt">Retention playbook</h3>
+      <div class="grid-3 mt-3">
+        <div class="card">
+          <p class="card-label">Week one</p>
+          <h4 class="card-title" style="font-size: 11pt">Deliver a visible win.</h4>
+          <p class="card-copy">Import, audit and first approved campaign within the first week. Show the practice one booked appointment it can trace.</p>
+        </div>
+        <div class="card">
+          <p class="card-label">Every week</p>
+          <h4 class="card-title" style="font-size: 11pt">Send the scorecard.</h4>
+          <p class="card-copy">Response, bookings, recovered production and escalations. Make the number impossible to miss.</p>
+        </div>
+        <div class="card">
+          <p class="card-label">Every month</p>
+          <h4 class="card-title" style="font-size: 11pt">Review the holdout.</h4>
+          <p class="card-copy">Compare treated and control groups, explain the assumptions and agree on one expansion.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 03b VALIDATION ================= -->
+    <section class="page">
+      <div class="page-head">
+        <img src="../public/assets/logo-black.png" alt="RecallPilot" />
+        <span>03 · Validation plan</span>
+      </div>
+
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <span class="section-kicker">Validation plan</span>
+      </div>
+      <h1 class="section-title">Validate before writing production code.</h1>
+      <p class="section-lead">
+        The product plan assumes the business case is validated in parallel with the first build.
+        The audit is both the lead magnet and the validation instrument.
+      </p>
+
+      <table class="mt-6">
+        <thead>
+          <tr>
+            <th style="width: 8%">Week</th>
+            <th>Action</th>
+            <th style="width: 32%">Success criterion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1</strong></td>
+            <td>30 interviews with practice managers in Germany and the Netherlands; ask for current recall process, overdue patient count, staff hours, PMS and willingness to pay.</td>
+            <td>At least 20 interviews completed; 10 practices share a real overdue-patient number.</td>
+          </tr>
+          <tr>
+            <td><strong>2</strong></td>
+            <td>Build a free “Recall Revenue Audit” using CSV upload. Run it for 5 clinics. Deliver a one-page report with estimated revenue at risk.</td>
+            <td>5 audits delivered; at least 3 clinics say the number is credible.</td>
+          </tr>
+          <tr>
+            <td><strong>3</strong></td>
+            <td>Pre-sell 10 pilots at €199/month for 90 days, 50% upfront. Use a concierge workflow: manual segmentation, AI-assisted messages, human review.</td>
+            <td>10 paying pilots, or 5 pilots plus 5 strong written commitments.</td>
+          </tr>
+          <tr>
+            <td><strong>4</strong></td>
+            <td>Run the first pilot messages, measure response and bookings, interview the front desk and document every objection.</td>
+            <td>20%+ response rate; 10+ booked appointments in the first month; front-desk time under 2 hours/week.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout mt-6">
+        <p class="callout-title">Kill criteria</p>
+        <p>
+          Do not build the full product if fewer than 3 clinics will pay after 30 interviews; the
+          response rate is below 10%; fewer than 5 appointments are recovered per clinic per month;
+          or the PMS integration cannot be solved with CSV or one API within 6 weeks. In that case,
+          pivot to veterinary clinics with the same engine or to SwitchboardAI.
+        </p>
+      </div>
+
+      <h3 class="mt-8" style="font-size: 13pt">Operating expenses and break-even</h3>
+      <table class="mt-3 table--compact">
+        <thead>
+          <tr>
+            <th>Stage</th>
+            <th>Monthly OPEX</th>
+            <th>What it buys</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>0–10 customers</strong></td><td>€8k–15k</td><td>Founders, infrastructure, tools, legal/DPA, minimal marketing. No salaries beyond founders.</td></tr>
+          <tr><td><strong>50 customers</strong></td><td>€25k–35k</td><td>2 founders, 1 engineer, 1 part-time CS/support, tools, marketing experiments.</td></tr>
+          <tr><td><strong>100 customers</strong></td><td>€42k–58k</td><td>4 people, infrastructure, marketing, accounting/legal, co-working. MRR €34.9k is not enough.</td></tr>
+          <tr><td><strong>250 customers</strong></td><td>€70k–95k</td><td>7–8 people, partner manager, support, marketing. MRR €87.3k; roughly break-even.</td></tr>
+          <tr><td><strong>500 customers</strong></td><td>€110k–150k</td><td>10–12 people, sales, support, engineering, partnerships. MRR €174.5k; profitable if churn stays below 4%.</td></tr>
+        </tbody>
+      </table>
+      <p class="note mt-2">
+        Planning estimates, not verified figures. Salaries vary significantly by country.
+      </p>
+
+      <div class="callout callout--compact mt-4">
+        <p class="callout-title">Resolve before billing</p>
+        <p>
+          The landing page currently lists <strong>5,000 patients/month</strong> on the Scale plan;
+          the business plan lists <strong>6,000</strong>. Pick one source of truth in the product’s
+          plan catalog and update the landing page before Stripe billing goes live.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= 04 PRODUCT ================= -->
+    <section class="page">
+      <div class="page-head">
+        <img src="../public/assets/logo-black.png" alt="RecallPilot" />
+        <span>04 · Product plan</span>
+      </div>
+
+      <div class="section-head">
+        <span class="section-num">04</span>
+        <span class="section-kicker">Product plan</span>
+      </div>
+      <h1 class="section-title">The MVP is a closed loop, not a platform.</h1>
+      <p class="section-lead">
+        The first release must take a practice from a CSV export to a credible recovered-revenue
+        report. Everything else is deferred until the loop is proven with real clinics.
+      </p>
+
+      <h3 class="mt-6" style="font-size: 13pt">MVP scope</h3>
+      <table class="mt-3">
+        <thead>
+          <tr>
+            <th style="width: 22%">Area</th>
+            <th>MVP behavior</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Auth &amp; tenancy</strong></td><td>Org signup/login, invitations, owner/admin/staff roles, locations, providers.</td></tr>
+          <tr><td><strong>Data import</strong></td><td>CSV upload, column mapping, validation, consent fields, idempotent re-import.</td></tr>
+          <tr><td><strong>Free audit</strong></td><td>Overdue patients, at-risk production estimate, sample messages, shareable report link.</td></tr>
+          <tr><td><strong>Recall engine</strong></td><td>Hygiene overdue, treatment follow-up, lapsed 12–24 months, due in 30 days; per-provider/location rules.</td></tr>
+          <tr><td><strong>Campaigns</strong></td><td>Segment selection, holdout group, email templates, AI-assisted drafts, human approval, quiet hours, caps.</td></tr>
+          <tr><td><strong>Inbox</strong></td><td>Threaded conversations, intent classification, suggested replies, human takeover, escalation queue.</td></tr>
+          <tr><td><strong>Booking</strong></td><td>Public booking page with attribution token, confirmation email/ICS, staff confirmation.</td></tr>
+          <tr><td><strong>Dashboard</strong></td><td>Recovered appointments, recovered production, funnel, recall pipeline, agent status.</td></tr>
+          <tr><td><strong>Reporting</strong></td><td>Monthly PDF with treated vs control-group lift.</td></tr>
+          <tr><td><strong>Billing</strong></td><td>Stripe Checkout/Portal, plan limits, usage event tracking.</td></tr>
+          <tr><td><strong>Compliance</strong></td><td>Audit log, opt-out suppression, retention controls, RLS, DPA/DPIA artifacts.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="grid-2 mt-5">
+        <div class="card card--plain">
+          <p class="card-label">Out of scope for v0.1</p>
+          <ul class="bullets">
+            <li>Voice calling and TTS</li>
+            <li>WhatsApp and SMS (email-only first)</li>
+            <li>Open Dental/Dentrix/Exact/SOE write-back</li>
+            <li>Insurance verification, clinical advice, diagnosis</li>
+            <li>Native mobile apps, enterprise SSO, multi-currency</li>
+            <li>n8n for critical paths; agent frameworks</li>
+          </ul>
+        </div>
+        <div class="card">
+          <p class="card-label">Why email-first</p>
+          <p class="card-copy">
+            Email is the cheapest channel, needs no sender registration and is enough to prove
+            response and booking lift. SMS and WhatsApp add deliverability, consent and template
+            complexity that would slow the first pilot. Add them after the loop works.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 04b WORKFLOWS ================= -->
+    <section class="page">
+      <div class="page-head">
+        <img src="../public/assets/logo-black.png" alt="RecallPilot" />
+        <span>04 · Recall workflows</span>
+      </div>
+
+      <div class="section-head">
+        <span class="section-num">04</span>
+        <span class="section-kicker">Recall workflows</span>
+      </div>
+      <h1 class="section-title">The recall loop, step by step.</h1>
+      <p class="section-lead">
+        Every step produces a record the practice can inspect. Nothing is sent without an
+        eligibility check, and every booking can be traced back to a campaign and a message.
+      </p>
+
+      <h3 class="mt-6" style="font-size: 13pt">Core workflows</h3>
+      <div class="grid-2 mt-3">
+        <div class="steps">
+          <div class="step">
+            <span class="step-num">1</span>
+            <div class="step-body">
+              <p class="step-title">Audit</p>
+              <p class="step-copy">Upload CSV without full account → normalize and validate → overdue cohorts and at-risk production → sample messages → shareable report → convert to org.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-num">2</span>
+            <div class="step-body">
+              <p class="step-title">Campaign</p>
+              <p class="step-copy">Rules engine creates tasks → campaign with 90/10 holdout → eligibility checks → LLM drafts within approved templates → human approval → email send → inbound reply → classification/escalation → booking.</p>
+            </div>
+          </div>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <span class="step-num">3</span>
+            <div class="step-body">
+              <p class="step-title">Booking</p>
+              <p class="step-copy">Patient picks a slot or requests a time → booking record plus attribution token → confirmation/ICS → front desk confirms. PMS write-back comes later.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-num">4</span>
+            <div class="step-body">
+              <p class="step-title">Attribution</p>
+              <p class="step-copy">Compare treatment vs holdout booking rates. Report gross attributed revenue and control-adjusted lift separately. Label small samples as directional.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout mt-5">
+        <p class="callout-title">Attribution formula</p>
+        <p>
+          <strong>lift = treated booking rate − control booking rate.</strong>
+          Incremental revenue = lift × treated patients × average production. Report gross
+          attributed revenue separately and never present it as causal without the control group.
+        </p>
+      </div>
+
+      <h3 class="mt-8" style="font-size: 13pt">Before a message is sent</h3>
+      <table class="mt-3 table--compact">
+        <thead>
+          <tr>
+            <th style="width: 24%">Check</th>
+            <th>Rule</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Consent</strong></td><td>Channel consent must be granted for the selected channel. Unknown or expired consent blocks the send.</td></tr>
+          <tr><td><strong>Opt-out</strong></td><td>Any prior opt-out for the patient or channel suppresses all future messages, regardless of campaign.</td></tr>
+          <tr><td><strong>Quiet hours</strong></td><td>Send only inside clinic-defined windows in the clinic timezone, including local holidays.</td></tr>
+          <tr><td><strong>Frequency cap</strong></td><td>Maximum messages per patient per 30 days; no duplicate outreach across active campaigns.</td></tr>
+          <tr><td><strong>Recent appointment</strong></td><td>Skip patients already booked or seen since the task was generated.</td></tr>
+          <tr><td><strong>Open conversation</strong></td><td>Do not start a new thread while a human is replying or an escalation is unresolved.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ================= 04b ARCHITECTURE ================= -->
+    <section class="page">
+      <div class="page-head">
+        <img src="../public/assets/logo-black.png" alt="RecallPilot" />
+        <span>04 · Architecture</span>
+      </div>
+
+      <div class="section-head">
+        <span class="section-num">04</span>
+        <span class="section-kicker">Technical architecture</span>
+      </div>
+      <h1 class="section-title">One TypeScript codebase, few moving parts.</h1>
+      <p class="section-lead">
+        The brief proposes Next.js + NestJS + FastAPI + Redis + n8n. For a small team, simplify to
+        a modular Next.js app, a Postgres-backed worker and shared domain packages. Add Python only
+        when voice or heavier NLP requires it.
+      </p>
+
+      <table class="mt-6">
+        <thead>
+          <tr>
+            <th style="width: 20%">Layer</th>
+            <th style="width: 34%">Choice</th>
+            <th>Rationale</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Web</strong></td><td>Next.js 15 App Router, TypeScript, Tailwind, shadcn/ui</td><td>SSR booking/audit pages, server actions, fast dashboard development.</td></tr>
+          <tr><td><strong>Auth / DB / Storage</strong></td><td>Supabase EU (Postgres, Auth, RLS, Storage)</td><td>EU residency, built-in auth, row-level tenant isolation.</td></tr>
+          <tr><td><strong>ORM</strong></td><td>Drizzle + zod</td><td>Type-safe schema and shared validation across web and worker.</td></tr>
+          <tr><td><strong>Jobs</strong></td><td>pg-boss on Railway</td><td>Scheduling, retries and rate limits without Redis at MVP.</td></tr>
+          <tr><td><strong>AI</strong></td><td>Vercel AI SDK; OpenAI primary, Claude fallback; structured outputs</td><td>Provider redundancy and cost negotiation. No fine-tuning.</td></tr>
+          <tr><td><strong>Email</strong></td><td>Resend or Postmark behind an adapter; inbound webhook</td><td>Start with email only; swap providers without touching domain logic.</td></tr>
+          <tr><td><strong>Later channels</strong></td><td>Twilio adapter for SMS/WhatsApp</td><td>Same channel interface as email.</td></tr>
+          <tr><td><strong>Billing</strong></td><td>Stripe Checkout + Customer Portal + webhooks</td><td>Subscriptions, trials, dunning, self-serve portal.</td></tr>
+          <tr><td><strong>Reports</strong></td><td>react-pdf; Recharts and TanStack Table</td><td>Monthly PDF and data-dense dashboard.</td></tr>
+          <tr><td><strong>Observability</strong></td><td>Sentry + PostHog EU</td><td>Errors, activation funnel and product analytics.</td></tr>
+          <tr><td><strong>Deploy</strong></td><td>Vercel (web), Railway (worker), Supabase migrations</td><td>Low ops, EU regions, preview deploys.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout--compact mt-5">
+        <p class="callout-title">Why not the full stack from the brief?</p>
+        <p>
+          NestJS, FastAPI, Redis and n8n add deployment and operational overhead before the product
+          has proven demand. Next.js route handlers plus a pg-boss worker are enough for the first
+          thousand patients. Revisit the split when voice, heavy document processing or throughput
+          demand it.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= 04d DATA AND COMPLIANCE ================= -->
+    <section class="page">
+      <div class="page-head">
+        <img src="../public/assets/logo-black.png" alt="RecallPilot" />
+        <span>04 · Data and compliance</span>
+      </div>
+
+      <div class="section-head">
+        <span class="section-num">04</span>
+        <span class="section-kicker">Data and compliance</span>
+      </div>
+      <h1 class="section-title">Tenant isolation is the foundation.</h1>
+      <p class="section-lead">
+        Patient data is sensitive. The schema, RLS policies, retention jobs and audit trail are
+        product requirements, not infrastructure details.
+      </p>
+
+      <h3 class="mt-6" style="font-size: 13pt">Product repository layout</h3>
+      <div class="code mt-3"><span class="dim">RecallPilot-App/</span>
+├─ <span class="hi">apps/</span>
+│  ├─ <span class="hi">web/</span>                 <span class="dim"># Next.js 15: dashboard, inbox, booking, audit, APIs</span>
+│  └─ <span class="hi">worker/</span>              <span class="dim"># pg-boss: imports, sends, classification, reports</span>
+├─ <span class="hi">packages/</span>
+│  ├─ <span class="hi">db/</span>                  <span class="dim"># Drizzle schema, migrations, seeds, RLS tests</span>
+│  ├─ <span class="hi">core/</span>                <span class="dim"># rules, segments, attribution, plans, i18n, zod</span>
+│  ├─ <span class="hi">integrations/</span>        <span class="dim"># PMS and channel adapter interfaces</span>
+│  └─ <span class="hi">ui/</span>                  <span class="dim"># shared shadcn components and brand tokens</span>
+├─ <span class="hi">supabase/</span>                <span class="dim"># local config and policies</span>
+├─ <span class="hi">.github/workflows/</span>       <span class="dim"># CI</span>
+└─ <span class="hi">package.json</span>             <span class="dim"># npm workspaces</span></div>
+
+      <div class="grid-2 mt-6">
+        <div>
+          <h3 style="font-size: 13pt">Minimum data model</h3>
+          <ul class="bullets mt-3">
+            <li><strong>Tenancy:</strong> organizations, locations, users, memberships, providers</li>
+            <li><strong>Patients:</strong> patients, patient_channel_consents, appointments</li>
+            <li><strong>Recall:</strong> recall_rules, recall_tasks</li>
+            <li><strong>Outreach:</strong> campaigns, campaign_members, conversations, messages, message_events</li>
+            <li><strong>Outcomes:</strong> bookings, attribution_results, report_runs</li>
+            <li><strong>Operations:</strong> imports, import_rows, integration_connections, opt_outs, usage_events, subscriptions, plan_catalog, audit_logs</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="font-size: 13pt">Attribution mechanics</h3>
+          <ul class="bullets mt-3">
+            <li>Randomize campaign members 90/10 into treatment/holdout.</li>
+            <li>Stratify by location, treatment type and overdue bucket.</li>
+            <li>Outcome window: 30 days initially, later 60/90.</li>
+            <li>Revenue from PMS production value, or clinic-configured average.</li>
+            <li>Booking tokens prevent double counting and tie revenue to the campaign.</li>
+            <li>Show confidence and mark small samples as directional.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="mt-8" style="font-size: 13pt">Security and compliance</h3>
+      <div class="grid-2 mt-3">
+        <ul class="bullets">
+          <li>Supabase EU region; RLS on every tenant table; cross-tenant tests in CI.</li>
+          <li>Integration credentials in Supabase Vault; service keys only on server/worker.</li>
+          <li>Consent enforced per channel; unknown consent blocks sending; global opt-out suppression.</li>
+          <li>Quiet hours in clinic timezone; frequency caps; SPF/DKIM/DMARC; List-Unsubscribe.</li>
+        </ul>
+        <ul class="bullets">
+          <li>Clinical, insurance, complaint and ambiguous replies always escalate to a human.</li>
+          <li>Append-only audit log; PII redaction in Sentry/logs; retention and deletion jobs.</li>
+          <li>DPA/DPIA templates, subprocessor list and incident runbook before scale.</li>
+          <li>Raw audit-lead uploads purged on a short retention schedule.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ================= 05 DELIVERY ================= -->
+    <section class="page">
+      <div class="page-head">
+        <img src="../public/assets/logo-black.png" alt="RecallPilot" />
+        <span>05 · Delivery plan</span>
+      </div>
+
+      <div class="section-head">
+        <span class="section-num">05</span>
+        <span class="section-kicker">Delivery plan</span>
+      </div>
+      <h1 class="section-title">Pilot-ready in 10–12 weeks.</h1>
+      <p class="section-lead">
+        Assumes one full-time developer. Validation runs in parallel so the build is never more
+        than one milestone ahead of real clinic feedback.
+      </p>
+
+      <div class="mt-6">
+        <div class="milestone">
+          <span class="milestone-id">R0</span>
+          <div>
+            <div class="milestone-title">Bootstrap</div>
+            <p class="milestone-copy">Repo, workspaces, Next.js app, worker, Supabase EU, auth, CI, brand tokens. New user creates an org; RLS blocks cross-tenant access.</p>
+          </div>
+          <span class="milestone-weeks">Week 1</span>
+        </div>
+        <div class="milestone">
+          <span class="milestone-id">R1</span>
+          <div>
+            <div class="milestone-title">Audit slice</div>
+            <p class="milestone-copy">CSV importer, normalized model, public audit report, share link, synthetic seed. A real clinic CSV produces a reproducible audit.</p>
+          </div>
+          <span class="milestone-weeks">Weeks 2–3</span>
+        </div>
+        <div class="milestone">
+          <span class="milestone-id">R2</span>
+          <div>
+            <div class="milestone-title">Outreach slice</div>
+            <p class="milestone-copy">Rules engine, tasks, templates, AI drafts, approval queue, email adapter, worker. Scheduled campaign reaches a test inbox with approval and opt-out suppression.</p>
+          </div>
+          <span class="milestone-weeks">Weeks 4–6</span>
+        </div>
+        <div class="milestone">
+          <span class="milestone-id">R3</span>
+          <div>
+            <div class="milestone-title">Inbox and booking</div>
+            <p class="milestone-copy">Reply webhooks, classification, escalation queue, patient timeline, booking page, ICS. Reply is classified, escalated and the booking is attributed.</p>
+          </div>
+          <span class="milestone-weeks">Weeks 7–8</span>
+        </div>
+        <div class="milestone">
+          <span class="milestone-id">R4</span>
+          <div>
+            <div class="milestone-title">Dashboard and report</div>
+            <p class="milestone-copy">Recovery dashboard, holdout attribution, monthly PDF, audit log. Dashboard reflects real pilot data and the report shows treated vs control.</p>
+          </div>
+          <span class="milestone-weeks">Weeks 9–10</span>
+        </div>
+        <div class="milestone">
+          <span class="milestone-id">R5</span>
+          <div>
+            <div class="milestone-title">Billing and hardening</div>
+            <p class="milestone-copy">Stripe, plan limits, usage metering, roles, e2e tests, security checklist. A pilot clinic can subscribe and operations are safe.</p>
+          </div>
+          <span class="milestone-weeks">Weeks 11–12</span>
+        </div>
+        <div class="milestone">
+          <span class="milestone-id">R6</span>
+          <div>
+            <div class="milestone-title">Post-pilot expansion</div>
+            <p class="milestone-copy">Open Dental adapter/write-back, SMS/WhatsApp, multi-location, voice add-on. Only after pilot thresholds are met.</p>
+          </div>
+          <span class="milestone-weeks">Months 4–6</span>
+        </div>
+      </div>
+
+      <div class="callout callout--compact mt-5">
+        <p class="callout-title">Cross-repo integration</p>
+        <p>
+          The landing repo remains unchanged. The product repo copies the logos, favicons, Geist
+          fonts and color tokens once. Product URLs live at <strong>app.recallpilot.com</strong>
+          with <strong>/audit</strong>, <strong>/login</strong>, <strong>/signup</strong> and
+          <strong>/book/[org]</strong>. Later, landing CTAs move from <strong>#get-started</strong>
+          to the product signup and audit URLs. The plan catalog in
+          <strong>packages/core/src/plans.ts</strong> is the single source of truth for pricing and
+          limits.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= 05b PILOT SCORECARD ================= -->
+    <section class="page">
+      <div class="page-head">
+        <img src="../public/assets/logo-black.png" alt="RecallPilot" />
+        <span>05 · Pilot scorecard</span>
+      </div>
+
+      <div class="section-head">
+        <span class="section-num">05</span>
+        <span class="section-kicker">Pilot scorecard</span>
+      </div>
+      <h1 class="section-title">What “working” looks like.</h1>
+      <p class="section-lead">
+        The pilot is successful only if the practice sees credible recovered revenue and the
+        front desk does not absorb the work. These thresholds decide whether the next milestone
+        is funded.
+      </p>
+
+      <h3 class="mt-6" style="font-size: 13pt">Release success criteria</h3>
+      <table class="mt-3 table--compact">
+        <thead>
+          <tr>
+            <th style="width: 25%">Dimension</th>
+            <th>Target</th>
+            <th style="width: 30%">Measured by</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Audit credibility</strong></td>
+            <td>At least 3 of 5 clinics say the overdue-patient and revenue-at-risk numbers are credible.</td>
+            <td>Audit interviews and conversion to pilot</td>
+          </tr>
+          <tr>
+            <td><strong>Pilot demand</strong></td>
+            <td>10 paying pilots at €199/month for 90 days, or 5 pilots plus 5 written commitments.</td>
+            <td>Signed pilot agreements and upfront payments</td>
+          </tr>
+          <tr>
+            <td><strong>Patient response</strong></td>
+            <td>20%+ response rate on the first pilot messages.</td>
+            <td>Conversation and reply events</td>
+          </tr>
+          <tr>
+            <td><strong>Recovered appointments</strong></td>
+            <td>10+ booked appointments per clinic in the first month.</td>
+            <td>Bookings tied to campaign tokens</td>
+          </tr>
+          <tr>
+            <td><strong>Front-desk load</strong></td>
+            <td>Under 2 hours per week of staff time during the pilot.</td>
+            <td>Inbox handling time and staff interviews</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="mt-8" style="font-size: 13pt">Working cadence</h3>
+      <div class="grid-3 mt-3">
+        <div class="card">
+          <p class="card-label">Weekly</p>
+          <h4 class="card-title" style="font-size: 11pt">One demo, one decision.</h4>
+          <p class="card-copy">Review response, bookings, escalations and front-desk minutes. Choose one improvement for the next week.</p>
+        </div>
+        <div class="card">
+          <p class="card-label">Monthly</p>
+          <h4 class="card-title" style="font-size: 11pt">Recovered-revenue report.</h4>
+          <p class="card-copy">Send the treated-versus-holdout report with assumptions and a clear next action.</p>
+        </div>
+        <div class="card">
+          <p class="card-label">Gate</p>
+          <h4 class="card-title" style="font-size: 11pt">Evidence before scope.</h4>
+          <p class="card-copy">Do not start the next integration until the current milestone meets its threshold.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 05b R0-R1 ================= -->
+    <section class="page">
+      <div class="page-head">
+        <img src="../public/assets/logo-black.png" alt="RecallPilot" />
+        <span>05 · R0–R1 build plan</span>
+      </div>
+
+      <div class="section-head">
+        <span class="section-num">05</span>
+        <span class="section-kicker">R0–R1 build plan</span>
+      </div>
+      <h1 class="section-title">Start with the audit.</h1>
+      <p class="section-lead">
+        The first milestone is the free audit plus CSV import. It is the lead magnet, the
+        onboarding path and the data foundation for outreach.
+      </p>
+
+      <div class="grid-2 mt-6">
+        <div>
+          <h3 style="font-size: 13pt">R0 — Repo bootstrap</h3>
+          <div class="steps mt-3">
+            <div class="step"><span class="step-num">1</span><div class="step-body"><p class="step-title">Create the repo</p><p class="step-copy">Private v-cut127/RecallPilot-App; clone locally; switch the session to the new workspace.</p></div></div>
+            <div class="step"><span class="step-num">2</span><div class="step-body"><p class="step-title">Set up npm workspaces</p><p class="step-copy">apps/web (Next.js 15), apps/worker (pg-boss), packages/db, core, integrations, ui.</p></div></div>
+            <div class="step"><span class="step-num">3</span><div class="step-body"><p class="step-title">Copy brand assets</p><p class="step-copy">Logos, favicons, Geist fonts and color variables from the landing repo.</p></div></div>
+            <div class="step"><span class="step-num">4</span><div class="step-body"><p class="step-title">Provision Supabase EU</p><p class="step-copy">EU Central (Frankfurt), local Supabase config, migrations and RLS policies.</p></div></div>
+            <div class="step"><span class="step-num">5</span><div class="step-body"><p class="step-title">Auth and tenancy</p><p class="step-copy">Magic-link auth, organization creation, memberships and RLS tests.</p></div></div>
+            <div class="step"><span class="step-num">6</span><div class="step-body"><p class="step-title">CI and environments</p><p class="step-copy">Typecheck, lint, tests, build; Vercel and Railway projects; .env.example.</p></div></div>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size: 13pt">R1 — Audit and CSV import</h3>
+          <div class="card mt-3">
+            <p class="card-label">Public flow</p>
+            <ul class="bullets">
+              <li><strong>/audit</strong> — lead capture, CSV upload, progress state.</li>
+              <li><strong>/audit/[token]</strong> — shareable report, at-risk production, assumptions, sample messages, PDF download.</li>
+              <li>Report delivered by email; conversion CTA to create an org.</li>
+            </ul>
+          </div>
+          <div class="card mt-3">
+            <p class="card-label">Authenticated flow</p>
+            <ul class="bullets">
+              <li><strong>/onboarding</strong> — practice, locations, import, recall rules summary.</li>
+              <li><strong>/app/import</strong> — delimiter/encoding detection, column mapping, validation preview, commit.</li>
+              <li><strong>/app/dashboard</strong> — placeholder with import counts and audit link.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="mt-8" style="font-size: 13pt">Import pipeline</h3>
+      <div class="grid-3 mt-3">
+        <div class="card">
+          <p class="card-label">1 · Ingest</p>
+          <p class="card-copy">Signed upload to Storage; file size/type limits; virus scan hook; raw file marked for deletion after processing.</p>
+        </div>
+        <div class="card">
+          <p class="card-label">2 · Parse</p>
+          <p class="card-copy">UTF-8/BOM, comma/semicolon delimiters, European date formats, quoted fields, formula-injection protection.</p>
+        </div>
+        <div class="card">
+          <p class="card-label">3 · Map</p>
+          <p class="card-copy">Auto-detect columns with manual override; save mapping profiles per PMS export.</p>
+        </div>
+        <div class="card">
+          <p class="card-label">4 · Validate</p>
+          <p class="card-copy">Duplicates, missing contacts, invalid email/phone, missing consent, unmatched locations/providers.</p>
+        </div>
+        <div class="card">
+          <p class="card-label">5 · Normalize</p>
+          <p class="card-copy">Write patients, consents and appointments; store import errors for download.</p>
+        </div>
+        <div class="card">
+          <p class="card-label">6 · Audit</p>
+          <p class="card-copy">Overdue by treatment type; lapsed 12–24 months; due next 30 days; production at risk with explicit assumptions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 05c R1 ACCEPTANCE ================= -->
+    <section class="page">
+      <div class="page-head">
+        <img src="../public/assets/logo-black.png" alt="RecallPilot" />
+        <span>05 · R1 acceptance</span>
+      </div>
+
+      <div class="section-head">
+        <span class="section-num">05</span>
+        <span class="section-kicker">R1 acceptance</span>
+      </div>
+      <h1 class="section-title">Done means a clinic can trust the number.</h1>
+      <p class="section-lead">
+        R1 is complete when a practice can upload its own data, see an audit it believes, and share
+        it with a colleague without manual help from the team.
+      </p>
+
+      <h3 class="mt-6" style="font-size: 13pt">R1 acceptance criteria</h3>
+      <ul class="bullets bullets--check mt-3 two-col-list">
+        <li>A 5,000-row clinic CSV imports and produces an audit in under 60 seconds.</li>
+        <li>Mapping and validation errors are visible and downloadable; no silent data loss.</li>
+        <li>RLS tests prove one org cannot access another org’s patients or reports.</li>
+        <li>Report token is unguessable, revocable and expires.</li>
+        <li>The report is readable on mobile and labels every estimate as an assumption.</li>
+        <li>A new user can go from signup to an imported audit without manual intervention.</li>
+        <li>Synthetic seed covers 3 locations, ~2,500 patients, messy rows and two CSV variants.</li>
+        <li>Raw audit-lead uploads are purged on the defined retention schedule.</li>
+      </ul>
+
+      <div class="callout mt-6">
+        <p class="callout-title">Synthetic data for R1</p>
+        <p>
+          Until a real clinic export is available, seed the product with a realistic synthetic
+          clinic: 3 locations, ~2,500 patients, hygiene and treatment recall gaps, consent flags,
+          duplicates and deliberately malformed rows. Export it in two variants — comma/ISO dates
+          and semicolon/DD.MM.YYYY — so the importer is tested against European formats while the
+          UI stays English.
+        </p>
+      </div>
+
+      <h3 class="mt-8" style="font-size: 13pt">Demo script for the first clinic</h3>
+      <div class="grid-4 mt-3">
+        <div class="stat">
+          <div class="stat-value" style="font-size: 16pt">01</div>
+          <div class="stat-label">Upload the synthetic CSV and show the auto-detected columns.</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value" style="font-size: 16pt">02</div>
+          <div class="stat-label">Show validation: duplicates, missing consent, invalid contacts.</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value" style="font-size: 16pt">03</div>
+          <div class="stat-label">Open the audit: overdue patients and production at risk.</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value" style="font-size: 16pt">04</div>
+          <div class="stat-label">Share the tokenized report and create the org account.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 05c NEXT STEPS ================= -->
+    <section class="page">
+      <div class="page-head">
+        <img src="../public/assets/logo-black.png" alt="RecallPilot" />
+        <span>05 · Risks and next steps</span>
+      </div>
+
+      <div class="section-head">
+        <span class="section-num">05</span>
+        <span class="section-kicker">Risks and next steps</span>
+      </div>
+      <h1 class="section-title">The risks are operational, not technical.</h1>
+      <p class="section-lead">
+        The stack is conventional. The hard parts are attribution credibility, deliverability,
+        consent and front-desk adoption. Build only as far ahead as the evidence supports: the
+        audit earns outreach, outreach earns booking, and pilots earn deeper integrations.
+      </p>
+
+      <table class="mt-6">
+        <thead>
+          <tr>
+            <th style="width: 26%">Risk</th>
+            <th>Why it matters</th>
+            <th style="width: 34%">Mitigation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Attribution credibility</strong></td><td>Weak numbers destroy the wedge and renewals.</td><td>Holdout group from day one; show assumptions; label directional results; booking tokens.</td></tr>
+          <tr><td><strong>Email deliverability</strong></td><td>Pilot fails before the agent gets a chance.</td><td>Dedicated sending domain, SPF/DKIM/DMARC, warm-up, bounces/complaints monitoring, provider adapter.</td></tr>
+          <tr><td><strong>Consent and GDPR</strong></td><td>One unlawful message can end the company.</td><td>Per-channel consent enforcement, suppression lists, DPA/DPIA, retention, audit logs, legal review.</td></tr>
+          <tr><td><strong>Import variability</strong></td><td>Every PMS exports different columns and dates.</td><td>Mapping profiles, validation reports, real CSV fixtures, normalized model, CSV fallback.</td></tr>
+          <tr><td><strong>LLM safety</strong></td><td>Clinical or insurance promises are unacceptable.</td><td>Approved templates, policy validator, clinical escalation, human approval in pilot mode, full logging.</td></tr>
+          <tr><td><strong>Front-desk adoption</strong></td><td>Staff revert to phone calls if the inbox adds work.</td><td>Human-in-the-loop queue, bulk approve, suggested replies, training, quick wins in week one.</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="mt-8" style="font-size: 13pt">Immediate next steps</h3>
+      <div class="steps mt-3">
+        <div class="step"><span class="step-num">1</span><div class="step-body"><p class="step-title">Create the product repo</p><p class="step-copy">v-cut127/RecallPilot-App, private, with npm workspaces.</p></div></div>
+        <div class="step"><span class="step-num">2</span><div class="step-body"><p class="step-title">Provision the environment</p><p class="step-copy">Supabase EU, Stripe test mode, Resend, PostHog EU, Sentry.</p></div></div>
+        <div class="step"><span class="step-num">3</span><div class="step-body"><p class="step-title">Ship R0</p><p class="step-copy">Auth, organizations, RLS, CI and the synthetic seed.</p></div></div>
+        <div class="step"><span class="step-num">4</span><div class="step-body"><p class="step-title">Ship R1</p><p class="step-copy">CSV import and the free audit report, then put it in front of five clinics.</p></div></div>
+        <div class="step"><span class="step-num">5</span><div class="step-body"><p class="step-title">Run validation in parallel</p><p class="step-copy">Interviews, audits and pilot pre-sales; enforce the kill criteria before building deeper integrations.</p></div></div>
+      </div>
+    </section>
+
+    <!-- ================= 06 BRAND ================= -->
+    <section class="page">
+      <div class="page-head">
+        <img src="../public/assets/logo-black.png" alt="RecallPilot" />
+        <span>06 · Brand system</span>
+      </div>
+
+      <div class="section-head">
+        <span class="section-num">06</span>
+        <span class="section-kicker">Brand system</span>
+      </div>
+      <h1 class="section-title">Quiet confidence, measurable outcomes.</h1>
+      <p class="section-lead">
+        The brand is restrained and clinical without feeling cold: large Geist headlines, generous
+        white space, ink-dark text, soft blue surfaces and a single confident accent. The product
+        should feel like a reliable operating tool, not a chatbot.
+      </p>
+
+      <h3 class="mt-6" style="font-size: 13pt">Logo usage</h3>
+      <div class="grid-2 mt-3">
+        <div class="logo-box logo-box--light">
+          <img src="../public/assets/logo-black.png" alt="RecallPilot black logo" />
+        </div>
+        <div class="logo-box logo-box--dark">
+          <img src="../public/assets/logo-white.png" alt="RecallPilot white logo" />
+        </div>
+      </div>
+      <div class="grid-2 mt-2">
+        <p class="note">Use the black logo on white and light surfaces. Minimum clear space: 1× the height of the mark.</p>
+        <p class="note">Use the white logo on <strong>#00061C</strong> and dark imagery. Never place the black logo on a dark background.</p>
+      </div>
+
+      <h3 class="mt-8" style="font-size: 13pt">Light palette</h3>
+      <div class="swatches mt-3">
+        <div class="swatch"><div class="swatch-color" style="background:#FFFFFF; border-bottom:1px solid #DCE5EF"></div><div class="swatch-meta"><div class="swatch-name">Background</div><div class="swatch-hex">#FFFFFF</div><div class="swatch-use">Page background</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F5F8FC"></div><div class="swatch-meta"><div class="swatch-name">Card</div><div class="swatch-hex">#F5F8FC</div><div class="swatch-use">Panels, cards, tables</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#EBF2F9"></div><div class="swatch-meta"><div class="swatch-name">Pill</div><div class="swatch-hex">#EBF2F9</div><div class="swatch-use">Tags and badges</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#DCE5EF"></div><div class="swatch-meta"><div class="swatch-name">Border</div><div class="swatch-hex">#DCE5EF</div><div class="swatch-use">Hairlines and dividers</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#526078"></div><div class="swatch-meta"><div class="swatch-name">Muted</div><div class="swatch-hex">#526078</div><div class="swatch-use">Secondary text</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#00061C"></div><div class="swatch-meta"><div class="swatch-name">Ink</div><div class="swatch-hex">#00061C</div><div class="swatch-use">Headlines and body</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#006EC3"></div><div class="swatch-meta"><div class="swatch-name">Accent</div><div class="swatch-hex">#006EC3</div><div class="swatch-use">Links, labels, emphasis</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:linear-gradient(135deg,#006EC3,#53D2E5)"></div><div class="swatch-meta"><div class="swatch-name">Accent gradient</div><div class="swatch-hex">#006EC3 → #53D2E5</div><div class="swatch-use">Hero atmosphere</div></div></div>
+      </div>
+
+      <div class="callout callout--compact mt-5">
+        <p class="callout-title">Usage rules</p>
+        <p>
+          Never stretch the logo, recolor it, add effects or place it on a low-contrast background.
+          Use the accent blue sparingly: links, active states, key labels and one primary CTA per
+          view. Use ink for primary text and muted for secondary text; avoid introducing new grays.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= 06b DARK PALETTE ================= -->
+    <section class="page">
+      <div class="page-head">
+        <img src="../public/assets/logo-black.png" alt="RecallPilot" />
+        <span>06 · Dark palette</span>
+      </div>
+
+      <div class="section-head">
+        <span class="section-num">06</span>
+        <span class="section-kicker">Dark palette</span>
+      </div>
+      <h1 class="section-title">The dark system carries the cover and product shell.</h1>
+      <p class="section-lead">
+        Dark surfaces are used for the cover, the app shell and high-emphasis moments. Keep the
+        hierarchy identical to the light theme: background, card, pill, border, muted, ink and
+        accent — only the values change.
+      </p>
+
+      <div class="dark-panel mt-5">
+        <div class="swatches">
+          <div class="swatch"><div class="swatch-color" style="background:#00061C; border-bottom:1px solid #1C2941"></div><div class="swatch-meta"><div class="swatch-name">Background</div><div class="swatch-hex">#00061C</div><div class="swatch-use">Dark page and cover</div></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#080F25"></div><div class="swatch-meta"><div class="swatch-name">Card</div><div class="swatch-hex">#080F25</div><div class="swatch-use">Dark panels</div></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#0D172F"></div><div class="swatch-meta"><div class="swatch-name">Pill</div><div class="swatch-hex">#0D172F</div><div class="swatch-use">Dark tags</div></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#1C2941"></div><div class="swatch-meta"><div class="swatch-name">Border</div><div class="swatch-hex">#1C2941</div><div class="swatch-use">Dark hairlines</div></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#95A4BD"></div><div class="swatch-meta"><div class="swatch-name">Muted</div><div class="swatch-hex">#95A4BD</div><div class="swatch-use">Secondary text</div></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#FFFFFF"></div><div class="swatch-meta"><div class="swatch-name">Ink</div><div class="swatch-hex">#FFFFFF</div><div class="swatch-use">Dark headlines</div></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#53D2E5"></div><div class="swatch-meta"><div class="swatch-name">Accent</div><div class="swatch-hex">#53D2E5</div><div class="swatch-use">Dark links and labels</div></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:radial-gradient(80% 80% at 30% 20%,#006EC3,#00061C)"></div><div class="swatch-meta"><div class="swatch-name">Atmosphere</div><div class="swatch-hex">#006EC3 → #00061C</div><div class="swatch-use">Cover and CTA glow</div></div></div>
+        </div>
+      </div>
+
+      <div class="callout callout--compact mt-5">
+        <p class="callout-title">Contrast rules</p>
+        <p>
+          Use white or <strong>#95A4BD</strong> for text on <strong>#00061C</strong>. Reserve
+          <strong>#53D2E5</strong> for links and active states; never use the light-theme accent
+          <strong>#006EC3</strong> on dark surfaces. Keep body copy at 13px or larger in the
+          product and 9pt or larger in print.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= 06b BRAND IN PRODUCT ================= -->
+    <section class="page">
+      <div class="page-head">
+        <img src="../public/assets/logo-black.png" alt="RecallPilot" />
+        <span>06 · Brand in product</span>
+      </div>
+
+      <div class="section-head">
+        <span class="section-num">06</span>
+        <span class="section-kicker">Brand in product</span>
+      </div>
+      <h1 class="section-title">The same hierarchy in light and dark.</h1>
+      <p class="section-lead">
+        The product shell can run in either mode without changing the information hierarchy. Keep
+        the cards, labels and accent behavior consistent; only the surface values change.
+      </p>
+
+      <h3 class="mt-6" style="font-size: 13pt">Dark workspace</h3>
+      <div class="dark-preview mt-3">
+        <div class="dark-preview-head">
+          <div class="dark-preview-title">Recovered this month<span>Bright Dental · June 2026</span></div>
+          <span class="dark-tag">Agent active</span>
+        </div>
+        <div class="dark-preview-grid">
+          <div class="dark-stat">
+            <div class="dark-stat-label">Recovered</div>
+            <div class="dark-stat-value">€8,430</div>
+            <div class="dark-stat-delta">+€2,180 this week</div>
+          </div>
+          <div class="dark-stat">
+            <div class="dark-stat-label">Appointments</div>
+            <div class="dark-stat-value">27</div>
+            <div class="dark-stat-delta">Back in the chair</div>
+          </div>
+          <div class="dark-stat">
+            <div class="dark-stat-label">Response rate</div>
+            <div class="dark-stat-value">24.6%</div>
+            <div class="dark-stat-delta">Treated vs holdout</div>
+          </div>
+        </div>
+        <div class="dark-row"><p>Sarah Mitchell booked a hygiene visit</p><span>+€350 · 10:42</span></div>
+        <div class="dark-row"><p>James Wilson replied to your recall</p><span class="dark-tag">Email</span></div>
+        <div class="dark-row"><p>Emma Taylor needs a human reply</p><span class="dark-tag">Escalated</span></div>
+      </div>
+
+      <h3 class="mt-8" style="font-size: 13pt">Light workspace</h3>
+      <div class="light-preview mt-3">
+        <div class="light-preview-head">
+          <div class="light-preview-title">Recovered this month<span>Bright Dental · June 2026</span></div>
+          <span class="light-tag">Agent active</span>
+        </div>
+        <div class="light-preview-grid">
+          <div class="light-stat">
+            <div class="light-stat-label">Recovered</div>
+            <div class="light-stat-value">€8,430</div>
+            <div class="light-stat-delta">+€2,180 this week</div>
+          </div>
+          <div class="light-stat">
+            <div class="light-stat-label">Appointments</div>
+            <div class="light-stat-value">27</div>
+            <div class="light-stat-delta">Back in the chair</div>
+          </div>
+          <div class="light-stat">
+            <div class="light-stat-label">Response rate</div>
+            <div class="light-stat-value">24.6%</div>
+            <div class="light-stat-delta">Treated vs holdout</div>
+          </div>
+        </div>
+        <div class="light-row"><p>Sarah Mitchell booked a hygiene visit</p><span>+€350 · 10:42</span></div>
+        <div class="light-row"><p>James Wilson replied to your recall</p><span class="light-tag">Email</span></div>
+        <div class="light-row"><p>Emma Taylor needs a human reply</p><span class="light-tag">Escalated</span></div>
+      </div>
+    </section>
+
+    <!-- ================= 06c TYPOGRAPHY ================= -->
+    <section class="page">
+      <div class="page-head">
+        <img src="../public/assets/logo-black.png" alt="RecallPilot" />
+        <span>06 · Typography and UI tokens</span>
+      </div>
+
+      <div class="section-head">
+        <span class="section-num">06</span>
+        <span class="section-kicker">Typography and UI tokens</span>
+      </div>
+      <h1 class="section-title">Geist for decisions. Inter for detail.</h1>
+      <p class="section-lead">
+        Geist carries headlines, numbers and navigation. Inter carries body copy, tables and
+        long-form content. Both are open-source and self-hosted with the product.
+      </p>
+
+      <div class="grid-2 mt-6">
+        <div class="type-specimen">
+          <div class="type-name"><strong>Geist</strong><span>400 / 500 / 600 · woff2</span></div>
+          <div class="type-display">Recovered this month</div>
+          <p class="type-body">
+            A plan for your practice. Bring patients back. 0123456789 €
+            <br />ABCDEFGHIJKLMNOPQRSTUVWXYZ<br />abcdefghijklmnopqrstuvwxyz
+          </p>
+          <div class="weight-row">
+            <div class="weight" style="font-weight:400">Regular<span>Headlines, large numbers</span></div>
+            <div class="weight" style="font-weight:500">Medium<span>Default UI and headings</span></div>
+            <div class="weight" style="font-weight:600">Semibold<span>Emphasis and labels</span></div>
+          </div>
+        </div>
+        <div class="type-specimen">
+          <div class="type-name"><strong>Inter</strong><span>400 / 600 / 700 · woff2</span></div>
+          <div style="font-size:18pt; font-weight:600; letter-spacing:-0.03em; color:var(--ink); line-height:1.15">Recovered this month</div>
+          <p class="type-body">
+            Body copy, instructions, table cells and report prose. Inter keeps dense operational
+            screens legible at small sizes.
+          </p>
+          <div class="weight-row">
+            <div class="weight" style="font-family:Inter; font-weight:400">Regular<span>Body and tables</span></div>
+            <div class="weight" style="font-family:Inter; font-weight:600">Semibold<span>UI labels and emphasis</span></div>
+            <div class="weight" style="font-family:Inter; font-weight:700">Bold<span>Rare emphasis</span></div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="mt-8" style="font-size: 13pt">Type scale</h3>
+      <table class="mt-3">
+        <thead>
+          <tr>
+            <th style="width: 22%">Role</th>
+            <th style="width: 20%">Font</th>
+            <th style="width: 16%">Size</th>
+            <th>Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Display</strong></td><td>Geist 500</td><td>44–68 px</td><td>Marketing hero and major statements</td></tr>
+          <tr><td><strong>Section title</strong></td><td>Geist 500</td><td>27–44 px</td><td>Page and section headings</td></tr>
+          <tr><td><strong>Card title</strong></td><td>Geist 500</td><td>22 px</td><td>Feature and plan cards</td></tr>
+          <tr><td><strong>Metric</strong></td><td>Geist 500</td><td>28–30 px</td><td>Dashboard KPIs and prices</td></tr>
+          <tr><td><strong>Body</strong></td><td>Inter 400</td><td>13–17 px</td><td>Product copy, tables, settings</td></tr>
+          <tr><td><strong>Caption / label</strong></td><td>Geist 400–600</td><td>11–13 px</td><td>Metadata, tags, table headers</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="mt-8" style="font-size: 13pt">Surfaces and components</h3>
+      <div class="component-row mt-3">
+        <span class="button-sample">Get started</span>
+        <span class="pill-sample">Integration to be confirmed</span>
+        <span class="tag">Recall dashboard</span>
+        <div class="surface-sample"><span>Card</span><strong>#F5F8FC · 1px #DCE5EF · 10px radius</strong></div>
+      </div>
+      <div class="grid-3 mt-4">
+        <div class="stat"><div class="stat-value" style="font-size:14pt">10px</div><div class="stat-label">Card radius. Buttons use 7px; pills use 5px.</div></div>
+        <div class="stat"><div class="stat-value" style="font-size:14pt">24px</div><div class="stat-label">Default card padding on desktop; 16px on compact cards.</div></div>
+        <div class="stat"><div class="stat-value" style="font-size:14pt">1px</div><div class="stat-label">Hairline borders using the border token, never pure gray.</div></div>
+      </div>
+    </section>
+
+    <!-- ================= 06d ASSETS AND VOICE ================= -->
+    <section class="page">
+      <div class="page-head">
+        <img src="../public/assets/logo-black.png" alt="RecallPilot" />
+        <span>06 · Assets and voice</span>
+      </div>
+
+      <div class="section-head">
+        <span class="section-num">06</span>
+        <span class="section-kicker">Assets and voice</span>
+      </div>
+      <h1 class="section-title">The words matter as much as the mark.</h1>
+      <p class="section-lead">
+        The brand is compliant, calm and specific. Product copy should help a practice manager
+        understand what happened, what it is worth and what to do next.
+      </p>
+
+      <h3 class="mt-6" style="font-size: 13pt">Asset library</h3>
+      <table class="mt-3">
+        <thead>
+          <tr>
+            <th style="width: 34%">Asset</th>
+            <th>Location in the landing repo</th>
+            <th style="width: 24%">Product use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Black logo</td><td><strong>public/assets/logo-black.png</strong></td><td>Light UI, documents</td></tr>
+          <tr><td>White logo</td><td><strong>public/assets/logo-white.png</strong></td><td>Dark UI, cover</td></tr>
+          <tr><td>Favicons</td><td><strong>public/favicon-light.png</strong>, <strong>favicon-dark.png</strong></td><td>Browser tabs</td></tr>
+          <tr><td>Touch icon</td><td><strong>public/touch-icon.png</strong></td><td>iOS home screen</td></tr>
+          <tr><td>Geist 400/500/600</td><td><strong>public/fonts/geist-*.woff2</strong></td><td>Headings and UI</td></tr>
+          <tr><td>Inter 400/600/700</td><td><strong>public/fonts/inter-*.woff2</strong></td><td>Body and tables</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="mt-8" style="font-size: 13pt">Voice and tone</h3>
+      <div class="grid-3 mt-3">
+        <div class="card">
+          <p class="card-label">Clear</p>
+          <h4 class="card-title" style="font-size: 11pt">Say the number.</h4>
+          <p class="card-copy">Lead with recovered appointments and production. Avoid vague claims like “streamline” or “leverage AI.”</p>
+        </div>
+        <div class="card">
+          <p class="card-label">Calm</p>
+          <h4 class="card-title" style="font-size: 11pt">Never pressure the patient.</h4>
+          <p class="card-copy">Messages are helpful, short and easy to ignore. Opt-out is always one click or one word away.</p>
+        </div>
+        <div class="card">
+          <p class="card-label">Careful</p>
+          <h4 class="card-title" style="font-size: 11pt">Escalate, don’t guess.</h4>
+          <p class="card-copy">Clinical, insurance and complaint language is never improvised. The agent hands off to a human.</p>
+        </div>
+      </div>
+
+      <div class="callout callout--compact mt-5">
+        <p class="callout-title">Writing rules</p>
+        <p>
+          Use sentence case. Prefer short sentences and concrete nouns. Show the assumption behind
+          every estimate. Never imply clinical advice, guaranteed coverage or guaranteed revenue.
+          Localize with native review before sending in German or Dutch.
+        </p>
+      </div>
+
+      <h3 class="mt-8" style="font-size: 13pt">Copy examples</h3>
+      <table class="mt-3 table--compact">
+        <thead>
+          <tr>
+            <th style="width: 48%">Instead of</th>
+            <th>Say</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>“Leverage AI to streamline your recall.”</td><td>“Recover overdue appointments from your own patient list.”</td></tr>
+          <tr><td>“Guaranteed revenue growth.”</td><td>“Estimated recovered production, with the assumptions shown.”</td></tr>
+          <tr><td>“Your patients are overdue.”</td><td>“Three simple ways to get back on track.”</td></tr>
+          <tr><td>“Book now!!!”</td><td>“Choose a time that works for you.”</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+  </body>
+</html>

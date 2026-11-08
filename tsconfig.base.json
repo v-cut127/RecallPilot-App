@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
+    "allowJs": false,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": false,
+    "declaration": false,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@recallpilot/core": ["packages/core/src/index.ts"],
+      "@recallpilot/core/*": ["packages/core/src/*"],
+      "@recallpilot/db": ["packages/db/src/index.ts"],
+      "@recallpilot/db/*": ["packages/db/src/*"],
+      "@recallpilot/integrations": ["packages/integrations/src/index.ts"],
+      "@recallpilot/integrations/*": ["packages/integrations/src/*"],
+      "@recallpilot/ui": ["packages/ui/src/index.ts"],
+      "@recallpilot/ui/*": ["packages/ui/src/*"]
+    }
+  }
+}

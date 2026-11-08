@@ -1,0 +1,3 @@
+-- Local Supabase seed placeholder.
+-- Application seed: npm run db:seed (creates the demo org, 2,500 patients and two CSV exports).
+-- This file intentionally contains no patient data so `supabase db reset` stays fast.
